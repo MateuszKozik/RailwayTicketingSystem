@@ -35,7 +35,10 @@ public class Adres {
     private String miejscowosc;
     
     @OneToMany(mappedBy = "adres")
-    private Set<Kierowca> kierowca;
+    private Set<Maszynista> maszynista;
+    
+    @OneToMany(mappedBy = "adres")
+    private Set<Pasazer> pasazer;
 
     public Adres() {}
 
@@ -45,7 +48,8 @@ public class Adres {
         this.numerMieszkania = numerMieszkania;
         this.kodPocztowy = kodPocztowy;
         this.miejscowosc = miejscowosc;
-        kierowca = new HashSet<Kierowca>();
+        this.maszynista = new HashSet<Maszynista>();
+        this.pasazer = new HashSet<Pasazer>();
     }
 
     public Adres(String ulica, Integer numerDomu, String kodPocztowy, String miejscowosc) {
@@ -53,7 +57,8 @@ public class Adres {
         this.numerDomu = numerDomu;
         this.kodPocztowy = kodPocztowy;
         this.miejscowosc = miejscowosc;
-        kierowca = new HashSet<Kierowca>();
+        this.maszynista = new HashSet<Maszynista>();
+        this.pasazer = new HashSet<Pasazer>();
     }
 
     public Long getIdAdresu() {
@@ -122,14 +127,22 @@ public class Adres {
         this.miejscowosc = miejscowosc;
     }
 
-    public Set<Kierowca> getKierowca() {
-        return kierowca;
+    public Set<Maszynista> getMaszynista() {
+        return maszynista;
     }
 
-    public void setKierowca(Set<Kierowca> kierowca) {
-        this.kierowca = kierowca;
+    public void setMaszynista(Set<Maszynista> maszynista) {
+        this.maszynista = maszynista;
     }
-    
+
+    public Set<Pasazer> getPasazer() {
+        return pasazer;
+    }
+
+    public void setPasazer(Set<Pasazer> pasazer) {
+        this.pasazer = pasazer;
+    }
+
     @Override
     public String toString() {
         return String.format("[%s - %s - %s - %s]", idAdresu,ulica,numerDomu,numerMieszkania,kodPocztowy,miejscowosc);
