@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.kozik.RailwayTicketingSystem.controllers;
 
 import com.kozik.RailwayTicketingSystem.entities.Adres;
@@ -19,13 +14,13 @@ public class AdresController {
     @Autowired
     private AdresService adresService;
     
-    @RequestMapping(value = "adres/list", method = RequestMethod.GET)
+    @RequestMapping(value = "views/adres/list", method = RequestMethod.GET)
     public String getAll(Model model){
         List<Adres> adresList = adresService.listAll();
                           
         model.addAttribute("header","Lista wszystkich adresów"); 
         model.addAttribute("adresList",adresList);
-        return "adres/list";
+        return "views/adres/list";
     }
     
 }
