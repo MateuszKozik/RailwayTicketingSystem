@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />        
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>        
+        <title>Lista adresów</title>               
+    </head>
+
+    <body>
+        <div class="container">                
+            <h4>   <strong th:text="${header}"/>  </h4>      
+        </div>
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-4 offset-md-4">
+                    <a href="/" class="btn btn-primary" role="button">Strona główna</a>
+                    <a href="add" class="btn btn-success" role="button">Dodaj adres</a>
+                </div>
+            </div>
+            <div class="table-responsive mt-2">
+                <table class="table table-bordered table-striped">          
+                    <thead class="thead-dark">
+                        <tr  class="active">
+                            <th>Ulica</th>  
+                            <th>Numer domu</th>  
+                            <th>Numer mieszkania</th>
+                            <th>Kod pocztowy</th>
+                            <th>Miejscowość</th>  
+                            <th>Akcje</th>
+                        </tr>
+
+                    </thead>
+                    <tbody>                       
+                        <tr th:each ="adres : ${adresList}">                                     
+                            <td> <b  th:text="${adres.ulica}">...</b> </td>
+                            <td> <b  th:text="${adres.numerDomu}">...</b> </td>
+                            <td> <b  th:text="${adres.numerMieszkania}">...</b> </td>
+                            <td> <b  th:text="${adres.kodPocztowy}">...</b> </td>
+                            <td> <b  th:text="${adres.miejscowosc}">...</b> </td>   
+                            <td>
+                                <a class="font-weight-bold" style="text-decoration: none" th:href="@{'edit/' + ${adres.idAdresu}}">Edytuj</a>
+                                 &nbsp; &nbsp;
+                                <a class="font-weight-bold" style="text-decoration: none" th:href="@{'delete/' + ${adres.idAdresu}}">Usuń</a>
+                            </td>               
+                        </tr>
+                    </tbody>          
+                </table>    
+            </div>    
+        </div>
+    </body>
+</html>
+
