@@ -21,19 +21,19 @@ public class AdresController {
                           
         model.addAttribute("header","Lista wszystkich adresów"); 
         model.addAttribute("adresList",adresList);
-        return "views/adres/list";
+        return "/views/adres/list";
     }
     
-    @RequestMapping(value = "adres/add", method = RequestMethod.GET)
+    @RequestMapping(value = "views/adres/add", method = RequestMethod.GET)
     public String save(Model model) {
         Adres adres = new Adres();
         model.addAttribute("adres", adres);
-        return "/adres/add";
+        return "/views/adres/add";
     }
     
-    @RequestMapping(value = "adres/add", method = RequestMethod.POST)
+    @RequestMapping(value = "views/adres/add", method = RequestMethod.POST)
     public String save(@ModelAttribute("adres") Adres adres){
         adresService.save(adres);
-        return "redirect:/adres/list";
+        return "redirect:/views/adres/list";
     }
 }
