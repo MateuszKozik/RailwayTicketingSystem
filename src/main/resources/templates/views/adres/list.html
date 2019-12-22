@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >    
+<html xmlns:th="http://www.thymeleaf.com"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/main_layout}">     
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />        
-        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>        
         <title>Lista adresów</title>               
     </head>
 
     <body>
-        <div class="container">                
-            <h4>   <strong th:text="${header}"/>  </h4>      
-        </div>
-
-        <div class="container">
-
+        
+        <div layout:fragment="content" class="container">
+            <div class="row">
+                <div class="col-md-12 my-2">
+                    <h4>   <strong th:text="${header}"/>  </h4>  
+                </div>
+            </div>
             <div class="row">
                 <div class="col-md-4 offset-md-4">
                     <a href="/" class="btn btn-primary" role="button">Strona główna</a>
