@@ -53,4 +53,9 @@ public class AdresController {
         return "redirect:/views/adres/list";
     }
     
+    @RequestMapping(value = "views/adres/delete/{id}", method = RequestMethod.GET)
+    public String delete(@PathVariable(name = "id") long id){
+        adresService.delete(id);
+        return "redirect:/views/adres/list";
+    }
 }
