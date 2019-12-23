@@ -12,7 +12,7 @@
                     <div class="col-md-4 offset-md-4 text-center">                         
                         <div class="form-group">                                          
                             <label> Ulica </label>
-                            <input class=form-control type="text" th:field="${adres.ulica}"/>           
+                            <input class=form-control type="text" th:field="${adres.ulica}" required/>           
                         </div>    
                     </div>
                 </div>
@@ -21,7 +21,7 @@
                     <div class="col-md-4 offset-md-4 text-center">  
                         <div class="form-group">    
                             <label> Numer domu </label>
-                            <input class=form-control type="text" th:field="${adres.numerDomu}"/>          
+                            <input class=form-control type="number" min="1" th:field="${adres.numerDomu}" required/>          
                         </div>  
                     </div>
                 </div>
@@ -30,7 +30,7 @@
                     <div class="col-md-4 offset-md-4 text-center">  
                         <div class="form-group">    
                             <label> Numer mieszkania </label>
-                            <input class=form-control type="text" th:field="${adres.numerMieszkania}"/>            
+                            <input class=form-control type="number" min="1" th:field="${adres.numerMieszkania}"/>            
                         </div> 
                     </div>
                 </div>
@@ -39,7 +39,7 @@
                     <div class="col-md-4 offset-md-4 text-center">  
                         <div class="form-group">    
                             <label> Kod pocztowy </label>
-                            <input class=form-control type="text" th:field="${adres.kodPocztowy}"/>            
+                            <input class=form-control type="text" th:field="${adres.kodPocztowy}" required/>            
                         </div> 
                     </div>
                 </div>
@@ -48,7 +48,7 @@
                     <div class="col-md-4 offset-md-4 text-center">  
                         <div class="form-group">    
                             <label> Miejscowość </label>
-                            <input class=form-control type="text" th:field="${adres.miejscowosc}"/>            
+                            <input class=form-control type="text" th:field="${adres.miejscowosc}" required/>            
                         </div> 
                     </div>
                 </div>
