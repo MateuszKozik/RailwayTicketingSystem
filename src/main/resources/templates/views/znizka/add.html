@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/main_layout}"> 
+    <head>
+        <title>Dodaj zniżkę</title>
+    </head>
+    <body>
+        <div layout:fragment="content" class="container mt-2">
+
+
+            <form method="POST" th:object="${znizka}">
+                <div class="row">                 
+                    <div class="col-md-4 offset-md-4 text-center">                         
+                        <div class="form-group">    
+                            <label> Opis </label>
+                            <input class=form-control type="text" th:field="${znizka.opis}" required/>           
+                        </div>    
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 offset-md-4 text-center">  
+                        <div class="form-group">    
+                            <label> Procent zniżki </label>
+                            <input class=form-control type="number" min="0" max="100"  th:field="${znizka.procentZnizki}" required/>          
+                        </div>  
+                    </div>
+                </div>
+           
+                <div class="row">
+                    <div class="col-md-12 text-center">  
+                        <button type="submit" class="btn btn-primary">Zapisz</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </body>
+</html>

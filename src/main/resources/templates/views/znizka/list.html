@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/main_layout}">  
+    <head>        
+        <title>Lista zniżek</title>               
+    </head>
+
+    <body>
+        <div layout:fragment="content" class="container mt-2">                
+            <div class="row">
+                <div class="col-md-4">
+                    <a href="add" class="btn btn-info" role="button">Dodaj zniżkę</a>
+                </div>
+            </div>
+            <div class="table-responsive mt-2">
+                <table class="table table-bordered table-striped">          
+                    <thead class="thead-dark">
+                        <tr  class="active">
+                            <th>Opis zniżki</th>  
+                            <th>Procent</th>                 
+                            <th>Akcje</th>
+                        </tr>
+                    </thead>
+                    <tbody>                       
+                        <tr th:each ="znizka: ${znizkaList}">                                     
+                            <td> <b  th:text="${znizka.opis}">...</b> </td>
+                            <td> <b  th:text="${znizka.procentZnizki}+'%'">...</b> </td>
+                            <td>
+                                <a class="btn btn-danger" th:href="'#modal'+${znizka.idZnizki}" data-toggle="modal">Usuń</a>
+                                <div class="modal fade" th:id="'modal'+${znizka.idZnizki}" tabindex="-1">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Usuwanie</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Zamknij">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Czy na pewno chcesz usunąć?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Nie</button>
+                                                <a class="btn btn-primary" th:href="@{'delete/' + ${znizka.idZnizki}}">Tak</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a class="btn btn-primary " th:href="@{'edit/' + ${znizka.idZnizki}}">Edytuj</a>
+                            </td>               
+                        </tr>
+                    </tbody>          
+                </table>    
+            </div>    
+        </div>
+    </body>
+</html>
+
