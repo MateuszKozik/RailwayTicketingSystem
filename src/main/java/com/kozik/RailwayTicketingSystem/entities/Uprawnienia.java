@@ -30,4 +30,12 @@ public class Uprawnienia {
     public void setNazwa(String nazwa) {
         this.nazwa = nazwa;
     }
+
+    public List<Uzytkownik> getUzytkownik() {
+        return uzytkownik;
+    }
+
+    public void setUzytkownik(List<Uzytkownik> uzytkownik) {
+        this.uzytkownik = uzytkownik;
+    }
 }
