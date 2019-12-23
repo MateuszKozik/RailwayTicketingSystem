@@ -11,4 +11,9 @@ public class IndexController {
     public String showIndexPage(){
         return "/index";
     }
+    
+    @GetMapping("/home")
+    public String homeIndexPage(){
+        return "/index";
+    }
 }
