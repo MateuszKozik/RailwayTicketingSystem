@@ -5,9 +5,7 @@ import com.kozik.RailwayTicketingSystem.entities.Uzytkownik;
 import com.kozik.RailwayTicketingSystem.services.UprawnieniaService;
 import com.kozik.RailwayTicketingSystem.services.UzytkownikService;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class UzytkownikController {
@@ -50,7 +47,7 @@ public class UzytkownikController {
     @RequestMapping(value = "/uzytkownik/edit/{email}", method = RequestMethod.GET)
     public String edit(Model model,@PathVariable(name = "email") String email){
         Uzytkownik uzytkownik = uzytkownikService.get(email);
-        List<Uprawnienia> uprawnieniaList = uzytkownik.getUprawnienia();
+        List<Uprawnienia>uprawnieniaList = uprawnieniaService.listAll();
         model.addAttribute("uzytkownik",uzytkownik);
         model.addAttribute("uprawnieniaList", uprawnieniaList);
         return "views/uzytkownik/edit";
@@ -59,9 +56,8 @@ public class UzytkownikController {
     @RequestMapping(value = "/uzytkownik/edit/{email}", method = RequestMethod.POST)
     public String edit(@PathVariable(name = "email") String email,
             @ModelAttribute("uzytkownik") Uzytkownik uzytkownik,
-            @ModelAttribute("uprawnieniaList") List<Uprawnienia> uprawnieniaList){
+            @RequestParam(name = "uprawnienia", required = false) ArrayList<Uprawnienia>uprawnieniaList){
         uzytkownik.setEmail(email);
-        uzytkownik.setUprawnienia(uprawnieniaList);
         uzytkownikService.save(uzytkownik, uprawnieniaList);
         return "redirect:/uzytkownik/list";
     }
