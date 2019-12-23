@@ -31,10 +31,10 @@ public class Kurs {
     @Column(name = "miejsca_druga_klasa", nullable = false)
     private Integer miejscaDrugaKlasa;
 
-    @Column(name = "sprzedana_pierwsza_klasa", nullable = false)
+    @Column(name = "sprzedane_pierwsza_klasa", nullable = false)
     private Integer sprzedanePierwszaKlasa;
 
-    @Column(name = "sprzedana_druga_klasa", nullable = false)
+    @Column(name = "sprzedane_druga_klasa", nullable = false)
     private Integer sprzedaneDrugaKlasa;
 
     @ManyToOne
@@ -112,6 +112,14 @@ public class Kurs {
 
     public void setPociag(Pociag pociag) {
         this.pociag = pociag;
+    }
+
+    public Set<ZakupBiletu> getZakupBiletu() {
+        return zakupBiletu;
+    }
+
+    public void setZakupBiletu(Set<ZakupBiletu> zakupBiletu) {
+        this.zakupBiletu = zakupBiletu;
     }
 
     @Override
