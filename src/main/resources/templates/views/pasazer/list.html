@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/main_layout}">     
+    <head>      
+        <title>Lista maszynistów</title>               
+    </head>
+
+    <body>
+        <div layout:fragment="content" class="container mt-2">
+            <div class="row">
+                <div class="col-md-4">
+                    <a href="add" class="btn btn-info" role="button">Dodaj pasażera</a>
+                </div>
+            </div>
+            <div class="table-responsive mt-2">
+                <table class="table table-bordered table-striped">          
+                    <thead class="thead-dark">
+                        <tr  class="active">
+                            <th>Imię</th>  
+                            <th>Nazwisko</th>  
+                            <th>Pesel</th> 
+                            <th>Akcje</th>
+                        </tr>
+
+                    </thead>
+                    <tbody>                       
+                        <tr th:each ="pasazer : ${pasazerList}">                                     
+                            <td> <b  th:text="${pasazer.imie}">...</b> </td>
+                            <td> <b  th:text="${pasazer.nazwisko}">...</b> </td>
+                            <td> <b  th:text="${pasazer.pesel}">...</b> </td>  
+                            <td>
+                                <a class="font-weight-bold" style="text-decoration: none" th:href="@{'edit/' + ${pasazer.idPasazera}}">Edytuj</a>
+                                 &nbsp; &nbsp;
+                                <a class="font-weight-bold" style="text-decoration: none" th:href="@{'delete/' + ${pasazer.idPasazera}}">Usuń</a>
+                            </td>               
+                        </tr>
+                    </tbody>          
+                </table>    
+            </div>    
+        </div>
+    </body>
+</html>
+
