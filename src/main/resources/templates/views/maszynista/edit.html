@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/main_layout}">  
+    <head>
+        <title>Edycja maszynisty</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+    </head>
+    <body>
+        <div layout:fragment="content" class="container mt-2">
+            <form method="POST" th:object="${maszynista}">
+                <div class="row">        
+                    <div class="col-md-4 offset-md-4 text-center">                         
+                        <div class="form-group">  
+                            <label> Imię </label>
+                            <input class=form-control type="text" th:field="${maszynista.imie}" required/>           
+                        </div>    
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 offset-md-4 text-center">  
+                        <div class="form-group">    
+                            <label> Nazwisko </label>
+                            <input class=form-control type="text" th:field="${maszynista.nazwisko}" required/>          
+                        </div>  
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 offset-md-4 text-center">  
+                        <div class="form-group">    
+                            <label> Pesel </label>
+                            <input class=form-control type="number" th:field="${maszynista.pesel}" required/>            
+                        </div> 
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 text-center">  
+                        <button type="submit" class="btn btn-primary">Zapisz</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        </div>
+    </body>
+</html>
