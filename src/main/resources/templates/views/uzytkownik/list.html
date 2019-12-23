@@ -18,19 +18,24 @@
                     <thead class="thead-dark">
                         <tr  class="active">
                             <th>E-mail</th>  
-                            <th>Hasło</th>  
+                            <th>Hasło</th> 
+                            <th>Uprawnienia</th>
                             <th>Akcje</th>
                         </tr>
-
                     </thead>
                     <tbody>                       
                         <tr th:each ="uzytkownik : ${uzytkownikList}">                                     
                             <td> <b  th:text="${uzytkownik.email}">...</b> </td>
                             <td> <b  th:password="${uzytkownik.haslo}">...</b> </td>
+                            <td>  
+                                <div class="form-check" th:each="uprawnienia : ${uzytkownik.uprawnienia}">
+                                    <label class="form-check-label" th:text="${uprawnienia.nazwa}"></label>
+                                </div>
+                            </td>
                             <td>
-                                <a class="font-weight-bold" style="text-decoration: none" th:href="@{'edit/' + ${uzytkownik.idUzytkownika}}">Edytuj</a>
-                                 &nbsp; &nbsp;
-                                <a class="font-weight-bold" style="text-decoration: none" th:href="@{'delete/' + ${uzytkownik.idUzytkownika}}">Usuń</a>
+                                <a class="font-weight-bold" style="text-decoration: none" th:href="@{'edit/' + ${uzytkownik.email}}">Edytuj</a>
+                                &nbsp; &nbsp;
+                                <a class="font-weight-bold" style="text-decoration: none" th:href="@{'delete/' + ${uzytkownik.email}}">Usuń</a>
                             </td>               
                         </tr>
                     </tbody>          
