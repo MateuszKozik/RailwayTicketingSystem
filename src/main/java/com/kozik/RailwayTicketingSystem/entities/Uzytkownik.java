@@ -12,7 +12,7 @@ import javax.persistence.Table;
 public class Uzytkownik {
     
     @Id
-    @Column(name = "email", nullable = false)
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
     
     @Column(name = "haslo", nullable = false)
