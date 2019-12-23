@@ -17,27 +17,27 @@ public class AdresController {
     @Autowired
     private AdresService adresService;
     
-    @RequestMapping(value = "views/adres/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/adres/list", method = RequestMethod.GET)
     public String getAll(Model model){
         List<Adres> adresList = adresService.listAll();
         model.addAttribute("adresList",adresList);
         return "/views/adres/list";
     }
     
-    @RequestMapping(value = "views/adres/add", method = RequestMethod.GET)
+    @RequestMapping(value = "/adres/add", method = RequestMethod.GET)
     public String save(Model model) {
         Adres adres = new Adres();
         model.addAttribute("adres", adres);
         return "/views/adres/add";
     }
     
-    @RequestMapping(value = "views/adres/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/adres/add", method = RequestMethod.POST)
     public String save(@ModelAttribute("adres") Adres adres){
         adresService.save(adres);
-        return "redirect:/views/adres/list";
+        return "redirect:/adres/list";
     }
     
-     @RequestMapping(value = "views/adres/edit/{id}", method = RequestMethod.GET)
+     @RequestMapping(value = "/adres/edit/{id}", method = RequestMethod.GET)
     public String edit(Model model,@PathVariable(name = "id") long id){
         
         Adres adres = adresService.get(id);
@@ -45,17 +45,16 @@ public class AdresController {
         return "/views/adres/edit";
     }
     
-    @RequestMapping(value = "views/adres/edit/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/adres/edit/{id}", method = RequestMethod.POST)
     public String edit(@PathVariable(name = "id") long id, @ModelAttribute("adres") Adres adres){ 
-        System.out.println(id);
         adres.setIdAdresu(id);
         adresService.save(adres);
-        return "redirect:/views/adres/list";
+        return "redirect:/adres/list";
     }
     
-    @RequestMapping(value = "views/adres/delete/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/adres/delete/{id}", method = RequestMethod.GET)
     public String delete(@PathVariable(name = "id") long id){
         adresService.delete(id);
-        return "redirect:/views/adres/list";
+        return "redirect:/adres/list";
     }
 }
