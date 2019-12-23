@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/main_layout}"> 
+    <head>
+        <title>Dodaj użytkownika</title>
+    </head>
+    <body>
+        <div layout:fragment="content" class="container mt-2">
+
+
+            <form method="POST" th:object="${uzytkownik}">
+                <div class="row">                 
+                    <div class="col-md-4 offset-md-4 text-center">                         
+                        <div class="form-group">    
+                            <label> E-mail: </label>
+                            <input class=form-control type="text" th:field="${uzytkownik.email}" required/>           
+                        </div>    
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 offset-md-4 text-center">  
+                        <div class="form-group">    
+                            <label> Hasło: </label>
+                            <input class=form-control type="password" th:field="${uzytkownik.haslo}" required/>          
+                        </div>  
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 text-center offset-md-4"> 
+                        <label> Uprawnienia </label>   
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 offset-md-4">  
+                        <div class="form-check" th:each="uprawnienia : ${uprawnieniaList}">
+                            <input class="form-check-input" type="checkbox" name="uprawnienia" th:value="${uprawnienia.nazwa}">
+                            <label class="form-check-label" th:text="${uprawnienia.nazwa}"></label>
+                        </div> 
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 text-center">  
+                        <button type="submit" class="btn btn-primary">Zapisz</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </body>
+</html>
