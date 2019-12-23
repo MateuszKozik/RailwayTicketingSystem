@@ -1,8 +1,10 @@
 package com.kozik.RailwayTicketingSystem.entities;
 
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -12,7 +14,9 @@ public class Uprawnienia {
     @Id
     @Column(name = "nazwa", nullable = false)
     private String nazwa;
-
+   
+    @ManyToMany(mappedBy = "uprawnienia")
+    private List<Uzytkownik> uzytkownik;
     public Uprawnienia() {}
 
     public Uprawnienia(String nazwa) {

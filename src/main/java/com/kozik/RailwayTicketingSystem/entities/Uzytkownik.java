@@ -1,8 +1,12 @@
 package com.kozik.RailwayTicketingSystem.entities;
 
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -27,6 +31,12 @@ public class Uzytkownik {
     @OneToOne(mappedBy = "uzytkownik")
     private Pasazer pasazer;
 
+    @ManyToMany
+    @JoinTable(name = "uzytkownik_uprawnienia",joinColumns = {
+        @JoinColumn(name = "uzytkownik_email", referencedColumnName = "email")}, inverseJoinColumns = {
+        @JoinColumn(name = "uprawnienia_nazwa", referencedColumnName = "nazwa")})
+    private List<Uprawnienia> uprawnienia;
+    
     public Uzytkownik() {
     }
 
@@ -76,5 +86,15 @@ public class Uzytkownik {
     public void setPasazer(Pasazer pasazer) {
         this.pasazer = pasazer;
     }  
+
+    public List<Uprawnienia> getUprawnienia() {
+        return uprawnienia;
+    }
+
+    public void setUprawnienia(List<Uprawnienia> uprawnienia) {
+        this.uprawnienia = uprawnienia;
+    }
+    
+    
 }
 
