@@ -18,7 +18,10 @@ public class Uzytkownik {
     @Id
     @Column(name = "email", nullable = false, unique = true)
     private String email;
-    
+      
+    @Column(name = "id_uzytkownika",columnDefinition = "serial", insertable = false)
+    private Long idUzytkownika;
+ 
     @Column(name = "haslo", nullable = false)
     private String haslo;
 
@@ -94,7 +97,13 @@ public class Uzytkownik {
     public void setUprawnienia(List<Uprawnienia> uprawnienia) {
         this.uprawnienia = uprawnienia;
     }
-    
-    
+
+    public Long getIdUzytkownika() {
+        return idUzytkownika;
+    }
+
+    public void setIdUzytkownika(Long idUzytkownika) {
+        this.idUzytkownika = idUzytkownika;
+    }
 }
 
