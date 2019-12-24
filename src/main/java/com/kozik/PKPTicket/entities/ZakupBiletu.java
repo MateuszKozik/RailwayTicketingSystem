@@ -1,6 +1,7 @@
 package com.kozik.PKPTicket.entities;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,7 +21,7 @@ public class ZakupBiletu {
     private Long idBiletu;
     
     @Column(name="data_zakupu", nullable = false)
-    private LocalDate dataZakupu;
+    private LocalDateTime dataZakupu;
     
     @Column(name="klasa", nullable = false)
     private String klasa;
@@ -37,10 +38,12 @@ public class ZakupBiletu {
     @JoinColumn(name = "id_znizki")
     private Znizka znizka;
 
-    public ZakupBiletu() {}
+    public ZakupBiletu() {
+    this.dataZakupu = LocalDateTime.now();
+    }
 
     public ZakupBiletu(String klasa, Kurs kurs, Pasazer pasazer, Znizka znizka) {
-        this.dataZakupu = LocalDate.now();
+        this.dataZakupu = LocalDateTime.now();
         this.klasa = klasa;
         this.kurs = kurs;
         this.pasazer = pasazer;
@@ -48,7 +51,7 @@ public class ZakupBiletu {
     }
     
       public ZakupBiletu(String klasa, Kurs kurs, Pasazer pasazer) {
-        this.dataZakupu = LocalDate.now();
+        this.dataZakupu = LocalDateTime.now();
         this.klasa = klasa;
         this.kurs = kurs;
         this.pasazer = pasazer;
@@ -62,12 +65,14 @@ public class ZakupBiletu {
         this.idBiletu = idBiletu;
     }
 
-    public LocalDate getDataZakupu() {
-        return dataZakupu;
+    public String getDataZakupu() {
+        String dateTime = dataZakupu.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME).toString();
+        return dateTime;
     }
 
-    public void setDataZakupu(LocalDate dataZakupu) {
-        this.dataZakupu = dataZakupu;
+    public void setDataZakupu(String dataZakupu) {
+        LocalDateTime dateTime = LocalDateTime.parse(dataZakupu,DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+        this.dataZakupu = dateTime;
     }
 
     public String getKlasa() {
