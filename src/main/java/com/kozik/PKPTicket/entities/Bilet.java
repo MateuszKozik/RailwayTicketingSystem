@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="Zakup_biletu")
-public class ZakupBiletu {
+public class Bilet {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -38,11 +38,11 @@ public class ZakupBiletu {
     @JoinColumn(name = "id_znizki")
     private Znizka znizka;
 
-    public ZakupBiletu() {
+    public Bilet() {
     this.dataZakupu = LocalDateTime.now();
     }
 
-    public ZakupBiletu(String klasa, Kurs kurs, Pasazer pasazer, Znizka znizka) {
+    public Bilet(String klasa, Kurs kurs, Pasazer pasazer, Znizka znizka) {
         this.dataZakupu = LocalDateTime.now();
         this.klasa = klasa;
         this.kurs = kurs;
@@ -50,7 +50,7 @@ public class ZakupBiletu {
         this.znizka = znizka;
     }
     
-      public ZakupBiletu(String klasa, Kurs kurs, Pasazer pasazer) {
+      public Bilet(String klasa, Kurs kurs, Pasazer pasazer) {
         this.dataZakupu = LocalDateTime.now();
         this.klasa = klasa;
         this.kurs = kurs;

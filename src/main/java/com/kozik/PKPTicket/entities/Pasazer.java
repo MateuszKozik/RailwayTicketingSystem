@@ -41,7 +41,7 @@ public class Pasazer {
     private Adres adres;
 
     @OneToMany(mappedBy = "pasazer")
-    private Set<ZakupBiletu> zakupBiletu;
+    private Set<Bilet> bilet;
 
     public Pasazer() {
     }
@@ -52,7 +52,7 @@ public class Pasazer {
         this.pesel = pesel;
         this.uzytkownik = uzytkownik;
         adres = null;
-        zakupBiletu = new HashSet<ZakupBiletu>();
+        bilet = new HashSet<Bilet>();
     }
 
     public Long getIdPasazera() {
@@ -103,12 +103,12 @@ public class Pasazer {
         this.adres = adres;
     }
 
-    public Set<ZakupBiletu> getZakupBiletu() {
-        return zakupBiletu;
+    public Set<Bilet> getBilet() {
+        return bilet;
     }
 
-    public void setZakupBiletu(Set<ZakupBiletu> zakupBiletu) {
-        this.zakupBiletu = zakupBiletu;
+    public void setBilet(Set<Bilet> bilet) {
+        this.bilet = bilet;
     }
 
     @Override

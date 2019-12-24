@@ -44,7 +44,7 @@ public class Kurs {
     private Pociag pociag;
     
     @OneToMany(mappedBy = "kurs")
-    private Set<ZakupBiletu> zakupBiletu;
+    private Set<Bilet> bilet;
     
 
     public Kurs(LocalDateTime dataKursu, Integer miejscaPierwszaKlasa, Integer miejscaDrugaKlasa, Integer sprzedanePierwszaKlasa, Integer sprzedaneDrugaKlasa) {
@@ -54,7 +54,7 @@ public class Kurs {
         this.sprzedanePierwszaKlasa = sprzedanePierwszaKlasa;
         this.sprzedaneDrugaKlasa = sprzedaneDrugaKlasa;
         pociag = null;
-        zakupBiletu = new HashSet<ZakupBiletu>();
+        bilet = new HashSet<Bilet>();
     }
 
     public Kurs() {
@@ -118,12 +118,12 @@ public class Kurs {
         this.pociag = pociag;
     }
 
-    public Set<ZakupBiletu> getZakupBiletu() {
-        return zakupBiletu;
+    public Set<Bilet> getBilet() {
+        return bilet;
     }
 
-    public void setZakupBiletu(Set<ZakupBiletu> zakupBiletu) {
-        this.zakupBiletu = zakupBiletu;
+    public void setBilet(Set<Bilet> bilet) {
+        this.bilet = bilet;
     }
 
     @Override

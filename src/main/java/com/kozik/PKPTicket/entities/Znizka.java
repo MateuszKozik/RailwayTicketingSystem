@@ -26,7 +26,7 @@ public class Znizka {
     private Integer procentZnizki;
     
     @OneToMany(mappedBy = "znizka")
-    private Set<ZakupBiletu> zakupBiletu;
+    private Set<Bilet> bilet;
     
     
     public Znizka(){}
@@ -34,7 +34,7 @@ public class Znizka {
     public Znizka(String opis, Integer procentZnizki) {
         this.opis = opis;
         this.procentZnizki = procentZnizki;
-        zakupBiletu = new HashSet<ZakupBiletu>();
+        bilet = new HashSet<Bilet>();
     }
 
     public Long getIdZnizki() {
@@ -61,12 +61,12 @@ public class Znizka {
         this.procentZnizki = procentZnizki;
     }
 
-    public Set<ZakupBiletu> getZakupBiletu() {
-        return zakupBiletu;
+    public Set<Bilet> getBilet() {
+        return bilet;
     }
 
-    public void setZakupBiletu(Set<ZakupBiletu> zakupBiletu) {
-        this.zakupBiletu = zakupBiletu;
+    public void setBilet(Set<Bilet> bilet) {
+        this.bilet = bilet;
     }
     
     @Override
