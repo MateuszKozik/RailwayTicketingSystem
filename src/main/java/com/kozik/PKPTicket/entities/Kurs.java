@@ -69,8 +69,11 @@ public class Kurs {
     }
 
     public String getDataKursu() {
-        String dateTime = dataKursu.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME).toString();
-        return dateTime;
+        if(dataKursu != null){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        String formatDateTime = dataKursu.format(formatter);  
+           return formatDateTime;
+        } else return "";
     }
 
     public void setDataKursu(String dataKursu) {

@@ -66,9 +66,11 @@ public class Bilet {
     }
 
     public String getDataZakupu() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        String formatDateTime = dataZakupu.format(formatter);
-        return formatDateTime;
+        if (dataZakupu != null) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+            String formatDateTime = dataZakupu.format(formatter);
+            return formatDateTime;
+        }else return "";
     }
 
     public void setDataZakupu(String dataZakupu) {
