@@ -1,6 +1,6 @@
 package com.kozik.PKPTicket.entities;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -23,7 +23,7 @@ public class Kurs {
     private Long idKursu;
 
     @Column(name = "data_kursu", nullable = false)
-    private LocalDate dataKursu;
+    private LocalDateTime dataKursu;
 
     @Column(name = "miejsca_pierwsza_klasa", nullable = false)
     private Integer miejscaPierwszaKlasa;
@@ -45,7 +45,7 @@ public class Kurs {
     private Set<ZakupBiletu> zakupBiletu;
     
 
-    public Kurs(LocalDate dataKursu, Integer miejscaPierwszaKlasa, Integer miejscaDrugaKlasa, Integer sprzedanePierwszaKlasa, Integer sprzedaneDrugaKlasa) {
+    public Kurs(LocalDateTime dataKursu, Integer miejscaPierwszaKlasa, Integer miejscaDrugaKlasa, Integer sprzedanePierwszaKlasa, Integer sprzedaneDrugaKlasa) {
         this.dataKursu = dataKursu;
         this.miejscaPierwszaKlasa = miejscaPierwszaKlasa;
         this.miejscaDrugaKlasa = miejscaDrugaKlasa;
@@ -66,11 +66,11 @@ public class Kurs {
         this.idKursu = idKursu;
     }
 
-    public LocalDate getDataKursu() {
+    public LocalDateTime getDataKursu() {
         return dataKursu;
     }
 
-    public void setDataKursu(LocalDate dataKursu) {
+    public void setDataKursu(LocalDateTime dataKursu) {
         this.dataKursu = dataKursu;
     }
 
