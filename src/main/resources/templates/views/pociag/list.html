@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/main_layout}">     
+    <head>
+        <title>Lista pociągów</title>               
+    </head>
+
+    <body>       
+        <div layout:fragment="content" class="container">
+            <div class="row">
+                <div class="col-md-4 mt-2">
+                    <a href="add" class="btn btn-info" role="button">Dodaj pociąg</a>
+                </div>
+            </div>
+            <div class="table-responsive mt-2">
+                <table class="table table-bordered table-striped">          
+                    <thead class="thead-dark">
+                        <tr  class="active">
+                            <th>Nazwa pociągu</th>  
+                            <th>Stacja początkowa</th>  
+                            <th>Stacja końcowa</th>
+                            <th>Cena w pierwszej klasie</th>
+                            <th>Cena w drugiej klasie</th>  
+                            <th>Akcje</th>
+                        </tr>
+
+                    </thead>
+                    <tbody>                       
+                        <tr th:each ="pociag : ${pociagList}">                                     
+                            <td> <b  th:text="${pociag.nazwa}">...</b> </td>
+                            <td> <b  th:text="${pociag.stacjaPoczatkowa}">...</b> </td>
+                            <td> <b  th:text="${pociag.stacjaKoncowa}">...</b> </td>
+                            <td> <b  th:text="${pociag.cenaPierwszaKlasa} + ' zł'">...</b> </td>
+                            <td> <b  th:text="${pociag.cenaDrugaKlasa} + ' zł'">...</b> </td>   
+                            <td>
+                                <a class="btn btn-danger" th:href="'#modal'+${pociag.idPociagu}" data-toggle="modal">Usuń</a>
+                                <div class="modal fade" th:id="'modal'+${pociag.idPociagu}" tabindex="-1">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Usuwanie</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Zamknij">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Czy na pewno chcesz usunąć?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Nie</button>
+                                                <a class="btn btn-primary" th:href="@{'delete/' + ${pociag.idPociagu}}">Tak</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a class="btn btn-primary " th:href="@{'edit/' + ${pociag.idPociagu}}">Edytuj</a>
+                            </td>               
+                        </tr>
+                    </tbody>          
+                </table>    
+            </div>    
+        </div>
+    </body>
+</html>
+
