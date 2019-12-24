@@ -37,7 +37,7 @@ public class ZakupBiletu {
     @JoinColumn(name = "id_znizki")
     private Znizka znizka;
 
-    protected ZakupBiletu() {}
+    public ZakupBiletu() {}
 
     public ZakupBiletu(String klasa, Kurs kurs, Pasazer pasazer, Znizka znizka) {
         this.dataZakupu = LocalDate.now();
