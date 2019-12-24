@@ -43,8 +43,7 @@ public class Pociag {
     @JoinColumn(name="id_maszynisty")
     private Maszynista maszynista;
 
-    protected Pociag() {
-    }
+    public Pociag() {}
 
     public Pociag(String stacjaPoczatkowa, String stacjaKoncowa, Double cenaPierwszaKlasa, Double cenaDrugaKlasa) {
         this.stacjaPoczatkowa = stacjaPoczatkowa;
