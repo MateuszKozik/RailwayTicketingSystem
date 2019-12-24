@@ -27,11 +27,11 @@ public class Bilet {
     private String klasa;
     
     @ManyToOne
-    @JoinColumn(name = "id_kursu", nullable = false)
+    @JoinColumn(name = "id_kursu", nullable = true)
     private Kurs kurs; 
     
     @ManyToOne
-    @JoinColumn(name = "id_pasazera", nullable = false)
+    @JoinColumn(name = "id_pasazera", nullable = true)
     private Pasazer pasazer;
     
     @ManyToOne
@@ -39,11 +39,11 @@ public class Bilet {
     private Znizka znizka;
 
     public Bilet() {
-    this.dataZakupu = LocalDateTime.now();
+        this.dataZakupu = LocalDateTime.now();    
     }
 
     public Bilet(String klasa, Kurs kurs, Pasazer pasazer, Znizka znizka) {
-        this.dataZakupu = LocalDateTime.now();
+        this.dataZakupu =LocalDateTime.now();
         this.klasa = klasa;
         this.kurs = kurs;
         this.pasazer = pasazer;
@@ -66,8 +66,9 @@ public class Bilet {
     }
 
     public String getDataZakupu() {
-        String dateTime = dataZakupu.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME).toString();
-        return dateTime;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String formatDateTime = dataZakupu.format(formatter);
+        return formatDateTime;
     }
 
     public void setDataZakupu(String dataZakupu) {

@@ -23,7 +23,7 @@ public class BiletController {
         return "views/bilet/list";
     }
     
-    @RequestMapping(value = "/zakupBiletu/add", method = RequestMethod.GET)
+    @RequestMapping(value = "/bilet/add", method = RequestMethod.GET)
     public String add(Model model){
         Bilet bilet = new Bilet();
         model.addAttribute("bilet", bilet);
