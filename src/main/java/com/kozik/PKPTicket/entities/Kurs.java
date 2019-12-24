@@ -55,7 +55,7 @@ public class Kurs {
         zakupBiletu = new HashSet<ZakupBiletu>();
     }
 
-    protected Kurs() {
+    public Kurs() {
     }
 
     public Long getIdKursu() {
