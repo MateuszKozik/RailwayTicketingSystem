@@ -31,10 +31,10 @@ public class Kurs {
     @Column(name = "miejsca_druga_klasa", nullable = false)
     private Integer miejscaDrugaKlasa;
 
-    @Column(name = "sprzedane_pierwsza_klasa", nullable = false)
+    @Column(name = "sprzedane_pierwsza_klasa", nullable = true)
     private Integer sprzedanePierwszaKlasa;
 
-    @Column(name = "sprzedane_druga_klasa", nullable = false)
+    @Column(name = "sprzedane_druga_klasa", nullable = true)
     private Integer sprzedaneDrugaKlasa;
 
     @ManyToOne

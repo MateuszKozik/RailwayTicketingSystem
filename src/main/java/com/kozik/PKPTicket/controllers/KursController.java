@@ -27,7 +27,7 @@ public class KursController {
     public String add(Model model){
         Kurs kurs = new Kurs();
         model.addAttribute("kurs", kurs);
-        return "view/kurs/add";
+        return "views/kurs/add";
     }
     
     @RequestMapping(value = "/kurs/add", method = RequestMethod.POST)
@@ -40,7 +40,7 @@ public class KursController {
     public String edit(Model model, @PathVariable(name = "id") long id){
         Kurs kurs = kursService.get(id);
         model.addAttribute("kurs", kurs);
-        return "view/kurs/edit";
+        return "views/kurs/edit";
     }
     
     @RequestMapping(value = "/kurs/edit/{id}", method = RequestMethod.POST)
