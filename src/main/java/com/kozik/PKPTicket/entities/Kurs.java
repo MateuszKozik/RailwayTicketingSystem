@@ -1,6 +1,8 @@
 package com.kozik.PKPTicket.entities;
 
 import java.time.LocalDateTime;
+import java.time.Month;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -66,12 +68,14 @@ public class Kurs {
         this.idKursu = idKursu;
     }
 
-    public LocalDateTime getDataKursu() {
-        return dataKursu;
+    public String getDataKursu() {
+        String dateTime = dataKursu.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME).toString();
+        return dateTime;
     }
 
-    public void setDataKursu(LocalDateTime dataKursu) {
-        this.dataKursu = dataKursu;
+    public void setDataKursu(String dataKursu) {
+        LocalDateTime dateTime = LocalDateTime.parse(dataKursu,DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+        this.dataKursu = dateTime;
     }
 
     public Integer getMiejscaPierwszaKlasa() {
