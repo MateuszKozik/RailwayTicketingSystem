@@ -54,7 +54,7 @@ public class MaszynistaController {
        List<Adres> adresList = adresService.listAll();
        List<Uzytkownik> uzytkownikList = uzytkownikService.listAll();
        Maszynista maszynista=maszynistaService.get(id);
-       model.addAttribute("maszynista", maszynista);
+       model.addAttribute("maszynista", maszynista);      
        model.addAttribute("adresList", adresList);
        model.addAttribute("uzytkownikList", uzytkownikList);
        return "/views/maszynista/edit";

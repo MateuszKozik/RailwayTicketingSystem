@@ -42,7 +42,13 @@
                         <div class="form-group">  
                             <label> Adres </label>
                             <select class="form-control" name="adres">
-                                <option value="">Wybierz adres</option>
+                                <option
+                                    th:value="${maszynista.adres} ? ${maszynista.adres} : ''" 
+                                    th:text="${maszynista.adres} ? ${maszynista.adres.ulica}+' '+${maszynista.adres.numerDomu} : 'Wybierz adres'">          
+                                </option>
+                                <option value="">
+                                    Wybierz adres
+                                </option>
                                 <option th:each="adres : ${adresList}"
                                         th:if="${adres.numerMieszkania != ''}"
                                         th:value="${adres.idAdresu}"
@@ -55,6 +61,28 @@
                                         th:value="${adres.idAdresu}"
                                         th:text="${adres.ulica}+' '+${adres.numerDomu}
                                         + ',  ' + ${adres.kodPocztowy} + ' ' + ${adres.miejscowosc}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 offset-md-4 text-center"> 
+                        <div class="form-group">  
+                            <label> Użytkownik </label>
+                            <select class="form-control" name="uzytkownik">
+                                <option
+                                    th:value="${maszynista.uzytkownik} ? ${maszynista.uzytkownik.email} : ''" 
+                                    th:text="${maszynista.uzytkownik} ? ${maszynista.uzytkownik.email} : 'Wybierz użytkownika'">          
+                                </option>
+                                <option value="">
+                                    Wybierz użytkownika
+                                </option>
+
+                                <option th:each="uzytkownik : ${uzytkownikList}"        
+                                        th:value="${uzytkownik.email}"
+                                        th:text="${uzytkownik.email}">
                                 </option>
                             </select>
                         </div>
