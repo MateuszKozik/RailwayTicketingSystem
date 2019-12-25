@@ -46,15 +46,21 @@ public class MaszynistaController {
     }
     
     @RequestMapping(value = "/maszynista/edit/{id}", method = RequestMethod.GET)
-    public String edit(Model model,@PathVariable(name = "id") long id){     
+    public String edit(Model model,@PathVariable(name = "id") long id){
+       List<Adres> adresList = AdresService.listAll();
        Maszynista maszynista=maszynistaService.get(id);
+       maszynista.getAdres();
        model.addAttribute("maszynista", maszynista);
+       model.addAttribute("adresList", adresList);
        return "/views/maszynista/edit";
     }
     
     @RequestMapping(value = "/maszynista/edit/{id}", method = RequestMethod.POST)
-    public String edit(@PathVariable(name = "id") long id, @ModelAttribute("maszynista") Maszynista maszynista){ 
+    public String edit(@PathVariable(name = "id") long id,
+            @ModelAttribute("maszynista") Maszynista maszynista,
+            @RequestParam(name = "adres")Adres adres){ 
         maszynista.setIdMaszynisty(id);
+        maszynista.setAdres(adres);
         maszynistaService.save(maszynista);
         return "redirect:/maszynista/list";
     }
