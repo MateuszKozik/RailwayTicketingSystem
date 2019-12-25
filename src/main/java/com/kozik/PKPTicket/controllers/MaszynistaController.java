@@ -1,6 +1,8 @@
 package com.kozik.PKPTicket.controllers;
 
 import com.kozik.PKPTicket.entities.Maszynista;
+import com.kozik.PKPTicket.entities.Adres;
+import com.kozik.PKPTicket.services.AdresService;
 import com.kozik.PKPTicket.services.MaszynistaService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +12,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MaszynistaController {
     @Autowired 
     private MaszynistaService maszynistaService;
+    @Autowired
+    private AdresService AdresService;
     
     @RequestMapping(value = "/maszynista/list", method = RequestMethod.GET)
     public String getAll(Model model){
@@ -25,13 +30,17 @@ public class MaszynistaController {
     
     @RequestMapping(value = "/maszynista/add", method = RequestMethod.GET)
     public String save(Model model){
+        List<Adres> adresList = AdresService.listAll();
         Maszynista maszynista = new Maszynista();
         model.addAttribute("maszynista", maszynista);
+        model.addAttribute("adresList", adresList);
         return "views/maszynista/add";
     }
     
     @RequestMapping(value = "/maszynista/add", method = RequestMethod.POST)
-    public String save(@ModelAttribute("maszynista") Maszynista maszynista){
+    public String save(@ModelAttribute("maszynista") Maszynista maszynista,
+            @RequestParam(name = "adres")Adres adres){
+        maszynista.setAdres(adres);
         maszynistaService.save(maszynista);
         return "redirect:/maszynista/list";
     }
