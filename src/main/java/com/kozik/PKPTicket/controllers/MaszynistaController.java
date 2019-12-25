@@ -2,8 +2,10 @@ package com.kozik.PKPTicket.controllers;
 
 import com.kozik.PKPTicket.entities.Maszynista;
 import com.kozik.PKPTicket.entities.Adres;
+import com.kozik.PKPTicket.entities.Uzytkownik;
 import com.kozik.PKPTicket.services.AdresService;
 import com.kozik.PKPTicket.services.MaszynistaService;
+import com.kozik.PKPTicket.services.UzytkownikService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,10 +18,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MaszynistaController {
-    @Autowired 
-    private MaszynistaService maszynistaService;
-    @Autowired
-    private AdresService AdresService;
+    @Autowired private MaszynistaService maszynistaService;
+    @Autowired private AdresService adresService;
+    @Autowired private UzytkownikService uzytkownikService;
     
     @RequestMapping(value = "/maszynista/list", method = RequestMethod.GET)
     public String getAll(Model model){
@@ -30,16 +31,19 @@ public class MaszynistaController {
     
     @RequestMapping(value = "/maszynista/add", method = RequestMethod.GET)
     public String save(Model model){
-        List<Adres> adresList = AdresService.listAll();
+        List<Adres> adresList = adresService.listAll();
+        List<Uzytkownik> uzytkownikList = uzytkownikService.listAll();
         Maszynista maszynista = new Maszynista();
         model.addAttribute("maszynista", maszynista);
         model.addAttribute("adresList", adresList);
+        model.addAttribute("uzytkownikList", uzytkownikList);
         return "views/maszynista/add";
     }
     
     @RequestMapping(value = "/maszynista/add", method = RequestMethod.POST)
     public String save(@ModelAttribute("maszynista") Maszynista maszynista,
-            @RequestParam(name = "adres")Adres adres){
+            @RequestParam(name = "adres")Adres adres,
+            @RequestParam(name = "uzytkownik") Uzytkownik uzytkownik){
         maszynista.setAdres(adres);
         maszynistaService.save(maszynista);
         return "redirect:/maszynista/list";
@@ -47,18 +51,20 @@ public class MaszynistaController {
     
     @RequestMapping(value = "/maszynista/edit/{id}", method = RequestMethod.GET)
     public String edit(Model model,@PathVariable(name = "id") long id){
-       List<Adres> adresList = AdresService.listAll();
+       List<Adres> adresList = adresService.listAll();
+       List<Uzytkownik> uzytkownikList = uzytkownikService.listAll();
        Maszynista maszynista=maszynistaService.get(id);
-       maszynista.getAdres();
        model.addAttribute("maszynista", maszynista);
        model.addAttribute("adresList", adresList);
+       model.addAttribute("uzytkownikList", uzytkownikList);
        return "/views/maszynista/edit";
     }
     
     @RequestMapping(value = "/maszynista/edit/{id}", method = RequestMethod.POST)
     public String edit(@PathVariable(name = "id") long id,
             @ModelAttribute("maszynista") Maszynista maszynista,
-            @RequestParam(name = "adres")Adres adres){ 
+            @RequestParam(name = "adres")Adres adres,  
+            @RequestParam(name = "uzytkownik") Uzytkownik uzytkownik){ 
         maszynista.setIdMaszynisty(id);
         maszynista.setAdres(adres);
         maszynistaService.save(maszynista);
