@@ -25,7 +25,69 @@
                         </div>  
                     </div>
                 </div>
+       
+                <div class="row">
+                    <div class="col-md-4 offset-md-4 text-center"> 
+                        <div class="form-group">  
+                            <label> Kurs </label>
+                            <select class="form-control" name="kurs">
+                                 <option
+                                    th:value="${bilet.kurs} ? ${bilet.kurs.idKursu} : ''" 
+                                    th:text="(${bilet.kurs} ? ( ${bilet.kurs.pociag} ? ${bilet.kurs.dataKursu}+', '+ ${bilet.kurs.pociag.stacjaPoczatkowa} 
+                                        + ' - ' + ${bilet.kurs.pociag.stacjaKoncowa} : ${bilet.kurs.dataKursu}) : 'Wybierz kurs') ">
+                                </option>
+                                <option value="">Wybierz kurs</option>
+                                <option th:each="kurs : ${kursList}"
+                                        th:value="${kurs.idKursu}"
+                                        th:text="${kurs.pociag} ? ${kurs.dataKursu}+', '+ ${kurs.pociag.stacjaPoczatkowa} 
+                                        + ' - ' + ${kurs.pociag.stacjaKoncowa} : ${kurs.dataKursu}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="row">
+                    <div class="col-md-4 offset-md-4 text-center"> 
+                        <div class="form-group">  
+                            <label> Pasażer </label>
+                            <select class="form-control" name="pasazer">
+                                <option
+                                    th:value="${bilet.pasazer} ? ${bilet.pasazer.idPasazera} : ''" 
+                                    th:text="${bilet.pasazer} ? ${bilet.pasazer.imie}+'  '+${bilet.pasazer.nazwisko}
+                                    +' - '+${bilet.pasazer.pesel} : 'Wybierz pasażera'">          
+                                </option>
+                                <option value="">Wybierz pasażera</option>
+                                <option th:each="pasazer : ${pasazerList}"
+                                        th:value="${pasazer.idPasazera}"
+                                        th:text="${pasazer.imie}+' '+${pasazer.nazwisko} 
+                                        + ' - ' + ${pasazer.pesel}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-4 offset-md-4 text-center"> 
+                        <div class="form-group">  
+                            <label> Zniżka </label>
+                            <select class="form-control" name="znizka">
+                                   <option
+                                    th:value="${bilet.znizka} ? ${bilet.znizka.idZnizki} : ''" 
+                                    th:text="${bilet.znizka} ? ${bilet.znizka.opis}+'  '+${bilet.znizka.procentZnizki}
+                                    : 'Wybierz zniżkę'">          
+                                </option>
+                                <option value="">Wybierz zniżkę</option>
+                                <option th:each="znizka : ${znizkaList}"
+                                        th:value="${znizka.idZnizki}"
+                                        th:text="${znizka.opis}+' '+${znizka.procentZnizki} + '%'">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="row">
                     <div class="col-md-12 text-center">  
                         <button type="submit" class="btn btn-primary">Zapisz</button>

@@ -39,22 +39,13 @@ public class Bilet {
     private Znizka znizka;
 
     public Bilet() {
-        this.dataZakupu = LocalDateTime.now();    
-    }
-
-    public Bilet(String klasa, Kurs kurs, Pasazer pasazer, Znizka znizka) {
-        this.dataZakupu =LocalDateTime.now();
-        this.klasa = klasa;
-        this.kurs = kurs;
-        this.pasazer = pasazer;
-        this.znizka = znizka;
-    }
-    
-      public Bilet(String klasa, Kurs kurs, Pasazer pasazer) {
-        this.dataZakupu = LocalDateTime.now();
-        this.klasa = klasa;
-        this.kurs = kurs;
-        this.pasazer = pasazer;
+        LocalDateTime dateTime = LocalDateTime.now();
+         DateTimeFormatter year = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+          DateTimeFormatter hour = DateTimeFormatter.ofPattern("HH:mm");
+          String yearString = dateTime.format(year);
+          String hourString = dateTime.format(hour);
+          String format = yearString + "T" + hourString;
+        this.dataZakupu = LocalDateTime.parse(format,DateTimeFormatter.ISO_LOCAL_DATE_TIME);;    
     }
 
     public Long getIdBiletu() {
@@ -67,10 +58,10 @@ public class Bilet {
 
     public String getDataZakupu() {
         if (dataZakupu != null) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-            String formatDateTime = dataZakupu.format(formatter);
-            return formatDateTime;
-        }else return "";
+            return dataZakupu.toString();
+        } else {
+            return "";
+        }
     }
 
     public void setDataZakupu(String dataZakupu) {
