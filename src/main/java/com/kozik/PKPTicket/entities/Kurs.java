@@ -56,6 +56,8 @@ public class Kurs {
     }
 
     public Kurs() {
+        this.sprzedanePierwszaKlasa = 0;
+        this.sprzedaneDrugaKlasa = 0;
     }
 
     public Long getIdKursu() {

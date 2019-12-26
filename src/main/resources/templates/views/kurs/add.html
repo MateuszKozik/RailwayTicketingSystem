@@ -43,7 +43,7 @@
                                 <option th:each="pociag : ${pociagList}"
                                         th:if="${pociag.nazwa != ''}"
                                         th:value="${pociag.idPociagu}"
-                                        th:text="${pociag.nazwa}+',  '+${pociag.stacjaPoczatkowa} 
+                                        th:text="'(' + ${pociag.nazwa}+') '+${pociag.stacjaPoczatkowa} 
                                         + ' - ' + ${pociag.stacjaKoncowa}">
                                 </option>
                                 <option th:each="pociag : ${pociagList}"

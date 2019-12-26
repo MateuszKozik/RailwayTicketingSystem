@@ -49,17 +49,6 @@ public class KursController {
     public String edit(Model model, @PathVariable(name = "id") long id) {
         List<Pociag> pociagList = pociagService.listAll();
         Kurs kurs = kursService.get(id);
-      /* if (kurs.getDataKursu() != "") {
-            StringBuilder date = new StringBuilder();
-            String dataKursu = kurs.getDataKursu();
-    
-            date.append(dataKursu.substring(6, 10)).append("-");
-            date.append(dataKursu.substring(3, 5)).append("-");
-            date.append(dataKursu.substring(0, 2)).append("T");
-            date.append(dataKursu.substring(11));
-            String formatted = date.toString();
-         kurs.setDataKursu(formatted);
-        }*/
         model.addAttribute("kurs", kurs);
         model.addAttribute("pociagList", pociagList);
         return "views/kurs/edit";

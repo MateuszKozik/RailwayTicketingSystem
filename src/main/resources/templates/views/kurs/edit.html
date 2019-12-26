@@ -31,6 +31,8 @@
                         <div class="form-group">    
                             <label> Miejsca w drugiej klasie </label>
                             <input class=form-control type="number" min="0" th:field="${kurs.miejscaDrugaKlasa}"/>           
+                            <input class=form-control type="number" min="0" th:field="${kurs.sprzedanePierwszaKlasa}" hidden readonly/>
+                            <input class=form-control type="number" min="0" th:field="${kurs.sprzedaneDrugaKlasa}" hidden readonly/>
                         </div>  
                     </div>
                 </div>
@@ -43,15 +45,15 @@
                                 
                                 <option
                                     th:value="${kurs.pociag} ? ${kurs.pociag.idPociagu} : ''" 
-                                    th:text="${kurs.pociag} ? ${kurs.pociag.nazwa}+'  '+${kurs.pociag.stacjaPoczatkowa}
-                                    +' '+${kurs.pociag.stacjaKoncowa} : 'Wybierz pociąg'">          
+                                    th:text="${kurs.pociag} ? '(' + ${kurs.pociag.nazwa}+')  '+${kurs.pociag.stacjaPoczatkowa}
+                                    +' - '+${kurs.pociag.stacjaKoncowa} : 'Wybierz pociąg'">          
                                 </option>
                                 
                                 <option value="">Wybierz pociąg</option>
                                 <option th:each="pociag : ${pociagList}"
                                         th:if="${pociag.nazwa != ''}"
                                         th:value="${pociag.idPociagu}"
-                                        th:text="${pociag.nazwa}+',  '+${pociag.stacjaPoczatkowa} 
+                                        th:text="'(' + ${pociag.nazwa}+')  '+${pociag.stacjaPoczatkowa} 
                                         + ' - ' + ${pociag.stacjaKoncowa}">
                                 </option>
                                 <option th:each="pociag : ${pociagList}"

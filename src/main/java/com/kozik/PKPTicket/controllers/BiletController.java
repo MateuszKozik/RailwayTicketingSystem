@@ -80,7 +80,7 @@ public class BiletController {
         bilet.setKurs(kurs);
         bilet.setPasazer(pasazer);
         bilet.setIdBiletu(id);
-        biletService.save(bilet);
+        biletService.edit(bilet);
         return "redirect:/bilet/list";
     }
     
