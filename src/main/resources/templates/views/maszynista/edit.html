@@ -43,7 +43,7 @@
                             <label> Adres </label>
                             <select class="form-control" name="adres">
                                 <option
-                                    th:value="${maszynista.adres} ? ${maszynista.adres} : ''" 
+                                    th:value="${maszynista.adres} ? ${maszynista.adres.idAdresu} : ''" 
                                     th:text="${maszynista.adres} ? ${maszynista.adres.ulica}+' '+${maszynista.adres.numerDomu} : 'Wybierz adres'">          
                                 </option>
                                 <option value="">

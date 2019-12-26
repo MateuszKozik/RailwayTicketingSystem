@@ -1,7 +1,6 @@
 package com.kozik.PKPTicket.entities;
 
 import java.time.LocalDateTime;
-import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
@@ -42,10 +41,9 @@ public class Kurs {
     @ManyToOne
     @JoinColumn(name = "id_pociagu")
     private Pociag pociag;
-    
+
     @OneToMany(mappedBy = "kurs")
     private Set<Bilet> bilet;
-    
 
     public Kurs(LocalDateTime dataKursu, Integer miejscaPierwszaKlasa, Integer miejscaDrugaKlasa, Integer sprzedanePierwszaKlasa, Integer sprzedaneDrugaKlasa) {
         this.dataKursu = dataKursu;
@@ -69,15 +67,15 @@ public class Kurs {
     }
 
     public String getDataKursu() {
-        if(dataKursu != null){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-        String formatDateTime = dataKursu.format(formatter);  
-           return formatDateTime;
-        } else return "";
+        if (dataKursu != null) {
+            return dataKursu.toString();
+        } else {
+            return "";
+        }
     }
 
     public void setDataKursu(String dataKursu) {
-        LocalDateTime dateTime = LocalDateTime.parse(dataKursu,DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+        LocalDateTime dateTime = LocalDateTime.parse(dataKursu, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
         this.dataKursu = dateTime;
     }
 

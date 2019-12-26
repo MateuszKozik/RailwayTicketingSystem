@@ -35,6 +35,36 @@
                     </div>
                 </div>
 
+                 <div class="row">
+                    <div class="col-md-4 offset-md-4 text-center"> 
+                        <div class="form-group">  
+                            <label> Pociąg </label>
+                            <select class="form-control" name="pociag">
+                                
+                                <option
+                                    th:value="${kurs.pociag} ? ${kurs.pociag.idPociagu} : ''" 
+                                    th:text="${kurs.pociag} ? ${kurs.pociag.nazwa}+'  '+${kurs.pociag.stacjaPoczatkowa}
+                                    +' '+${kurs.pociag.stacjaKoncowa} : 'Wybierz pociąg'">          
+                                </option>
+                                
+                                <option value="">Wybierz pociąg</option>
+                                <option th:each="pociag : ${pociagList}"
+                                        th:if="${pociag.nazwa != ''}"
+                                        th:value="${pociag.idPociagu}"
+                                        th:text="${pociag.nazwa}+',  '+${pociag.stacjaPoczatkowa} 
+                                        + ' - ' + ${pociag.stacjaKoncowa}">
+                                </option>
+                                <option th:each="pociag : ${pociagList}"
+                                        th:if="${pociag.nazwa == ''}"
+                                        th:value="${pociag.idPociagu}"
+                                        th:text="${pociag.stacjaPoczatkowa} 
+                                        + ' - ' + ${pociag.stacjaKoncowa}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="row">
                     <div class="col-md-12 text-center">  
                         <button type="submit" class="btn btn-primary">Zapisz</button>
