@@ -12,7 +12,7 @@
                     <div class="col-md-4 offset-md-4 text-center">                         
                         <div class="form-group">                                          
                             <label> Nazwa pociągu </label>
-                            <input class=form-control type="text" th:field="${pociag.nazwa}" required/>           
+                            <input class=form-control type="text" th:field="${pociag.nazwa}"/>           
                         </div>    
                     </div>
                 </div>
@@ -53,6 +53,27 @@
                     </div>
                 </div>
 
+                <div class="row">
+                    <div class="col-md-4 offset-md-4 text-center"> 
+                        <div class="form-group">  
+                            <label> Maszynista </label>
+                            <select class="form-control" name="maszynista">
+                                 <option
+                                    th:value="${pociag.maszynista} ? ${pociag.maszynista.idMaszynisty} : ''" 
+                                    th:text="${pociag.maszynista} ? ${pociag.maszynista.imie}+'  '+
+                                    ${pociag.maszynista.nazwisko} +' - '+${pociag.maszynista.pesel} : 'Wybierz maszynistę'">          
+                                </option>
+                                <option value="">Wybierz maszynistę</option>
+                                <option th:each="maszynista : ${maszynistaList}"
+                                        th:value="${maszynista.idMaszynisty}"
+                                        th:text="${maszynista.imie}+' '+${maszynista.nazwisko} 
+                                        + ' - ' + ${maszynista.pesel}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="row">
                     <div class="col-md-12 text-center">  
                         <button type="submit" class="btn btn-primary">Zapisz</button>
