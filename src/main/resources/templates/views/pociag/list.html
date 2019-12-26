@@ -31,8 +31,8 @@
                             <td> <b  th:text="${pociag.nazwa}">...</b> </td>
                             <td> <b  th:text="${pociag.stacjaPoczatkowa}">...</b> </td>
                             <td> <b  th:text="${pociag.stacjaKoncowa}">...</b> </td>
-                            <td> <b  th:text="${pociag.cenaPierwszaKlasa} + ' zł'">...</b> </td>
-                            <td> <b  th:text="${pociag.cenaDrugaKlasa} + ' zł'">...</b> </td>   
+                            <td> <b  th:text="${#numbers.formatCurrency(pociag.cenaPierwszaKlasa)}">...</b> </td>
+                            <td> <b  th:text="${#numbers.formatCurrency(pociag.cenaDrugaKlasa)}">...</b> </td>   
                             <td>
                                 <a class="btn btn-danger" th:href="'#modal'+${pociag.idPociagu}" data-toggle="modal">Usuń</a>
                                 <div class="modal fade" th:id="'modal'+${pociag.idPociagu}" tabindex="-1">
