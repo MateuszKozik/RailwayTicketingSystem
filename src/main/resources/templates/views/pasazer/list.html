@@ -2,17 +2,21 @@
 <html xmlns:th="http://www.thymeleaf.com"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/main_layout}">     
-    <head>      
+    <head>  
         <title>Lista pasażerów</title>               
     </head>
 
     <body>
         <div layout:fragment="content" class="container mt-2">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-4 my-1">
                     <a href="add" class="btn btn-info" role="button">Dodaj pasażera</a>
                 </div>
-            </div>
+                <div class="col-md-4 offset-md-4 my-1">
+                    <input type="search"  placeholder="Szukaj..." class="form-control search-input border-info" id="search"/>
+                </div>
+            </div>  
+
             <div class="table-responsive mt-2">
                 <table class="table table-bordered table-striped">          
                     <thead class="thead-dark">
@@ -24,7 +28,7 @@
                         </tr>
 
                     </thead>
-                    <tbody>                       
+                    <tbody id="table">                       
                         <tr th:each ="pasazer : ${pasazerList}">                                     
                             <td> <b  th:text="${pasazer.imie}">...</b> </td>
                             <td> <b  th:text="${pasazer.nazwisko}">...</b> </td>
@@ -56,7 +60,7 @@
                     </tbody>          
                 </table>    
             </div>    
-        </div>
+        </div>     
     </body>
 </html>
 

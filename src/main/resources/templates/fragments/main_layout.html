@@ -6,6 +6,17 @@
         <link rel="stylesheet" href="/css/style.css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />        
         <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $("#search").on("keyup", function() {
+                    var value = $(this).val().toLowerCase();
+                    $("#table tr").filter(function() {
+                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                     });
+                });
+            });
+        </script>
     </head>
     <body>
         <div th:replace="fragments/header::header">
