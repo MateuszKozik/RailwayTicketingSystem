@@ -15,46 +15,46 @@
                     <a class="nav-link active" href="/"> Strona Główna </a>
                 </li>
 
-                <li class="nav-item">
+                <li class="nav-item" sec:authorize="hasRole('ROLE_admin')">
                     <a class="nav-link active" href="/adres/list"> Adresy </a>
                 </li>
 
-                <li class="nav-item">
+                <li class="nav-item" sec:authorize="hasRole('ROLE_admin')">
                     <a class="nav-link active" href="/kurs/list"> Kursy </a>
                 </li>
 
-                <li class="nav-item">
+                <li class="nav-item" sec:authorize="hasRole('ROLE_admin')">
                     <a class="nav-link active" href="/maszynista/list"> Maszyniści </a>
                 </li>
 
-                <li class="nav-item">
+                <li class="nav-item" sec:authorize="hasRole('ROLE_admin')">
                     <a class="nav-link active" href="/pasazer/list"> Pasażerowie </a>
                 </li>
 
-                <li class="nav-item">
+                <li class="nav-item" sec:authorize="hasRole('ROLE_admin')">
                     <a class="nav-link active" href="/pociag/list"> Pociągi </a>
                 </li>
 
-                <li class="nav-item">
+                <li class="nav-item" sec:authorize="hasRole('ROLE_admin')">
                     <a class="nav-link active" href="/uzytkownik/list"> Użytkownicy </a>
                 </li>
 
-                <li class="nav-item">
+                <li class="nav-item" sec:authorize="hasRole('ROLE_admin')">
                     <a class="nav-link active" href="/bilet/list"> Bilety </a>
                 </li>
 
-                <li class="nav-item">
+                <li class="nav-item" sec:authorize="hasRole('ROLE_admin')">
                     <a class="nav-link active" href="/znizka/list"> Zniżki </a>
                 </li>
 
             </ul>
 
-            <form class="form-inline">
+            <form class="form-inline" sec:authorize="!isAuthenticated()">
                 <a href="/register" class="mr-2 btn btn-light" role="button">Rejestracja</a>
-                <a href="/login" class="mr-2 btn btn-success" role="button">Logowanie</a> 
+                <a href="/login"  class="mr-2 btn btn-success" role="button">Logowanie</a> 
 
             </form>	
-            <form th:action="@{/logout}" method="POST">
+            <form  sec:authorize="isAuthenticated()" th:action="@{/logout}" method="POST">
                 <button class="btn btn-success" type="submit" >Wyloguj</a>
             </form>
         </div>
