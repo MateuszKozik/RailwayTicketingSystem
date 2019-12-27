@@ -46,7 +46,10 @@
                 <li class="nav-item" sec:authorize="hasRole('ROLE_admin')">
                     <a class="nav-link active" href="/znizka/list"> Zniżki </a>
                 </li>
-
+                
+                <li class="nav-item" sec:authorize="!hasRole('ROLE_admin')">
+                    <a class="nav-link active" href="/kursy"> Kursy </a>
+                </li>
             </ul>
 
             <form class="form-inline" sec:authorize="!isAuthenticated()">
