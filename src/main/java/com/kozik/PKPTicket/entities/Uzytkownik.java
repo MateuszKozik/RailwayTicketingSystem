@@ -9,12 +9,17 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 
 @Entity
 @Table(name = "uzytkownik")
 public class Uzytkownik {
     
+    @Email
+    @NotEmpty
     @Id
     @Column(name = "email", nullable = false, unique = true)
     private String email;
@@ -22,6 +27,8 @@ public class Uzytkownik {
     @Column(name = "id_uzytkownika",columnDefinition = "serial", insertable = false)
     private Long idUzytkownika;
  
+    @NotEmpty
+    @Size(min = 5, max = 20)
     @Column(name = "haslo", nullable = false)
     private String haslo;
 
