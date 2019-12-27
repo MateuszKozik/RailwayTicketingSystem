@@ -20,8 +20,6 @@ public class IndexController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String showIndexPage(Model model) {
-        // LocalDateTime  date= LocalDateTime.now();
-        // List<Kurs> listKurs = kursRepository.findByPociagStacjaPoczatkowaAndDataKursuGreaterThan("Kraków", date);
         return "/index";
     }
 
@@ -31,18 +29,36 @@ public class IndexController {
             @RequestParam(name = "stacjaKoncowa", required = false) String stacjaKoncowa) {
         List<Kurs> kursList = null;
         if (stacjaPoczatkowa != "" && stacjaKoncowa != "") {
-            kursList = kursService.findByStacje(stacjaPoczatkowa, stacjaKoncowa); 
-            model.addAttribute("kursList", kursList);
-            return "/views/listKurs";
+            kursList = kursService.findByStacje(stacjaPoczatkowa, stacjaKoncowa);
+            if (kursList.isEmpty()) {
+                model.addAttribute("empty", true);
+                return "/index";
+            } else {
+                model.addAttribute("kursList", kursList);
+                return "/views/listKurs";
+            }
+
         } else if (stacjaPoczatkowa != "") {
             kursList = kursService.findByStacjaPoczatkowa(stacjaPoczatkowa);
-            model.addAttribute("kursList", kursList);
-            return "/views/listKurs";
+            if (kursList.isEmpty()) {
+                model.addAttribute("empty", true);
+                return "/index";
+            } else {
+                model.addAttribute("kursList", kursList);
+                return "/views/listKurs";
+            }
         } else if (stacjaKoncowa != "") {
             kursList = kursService.findByStacjaKoncowa(stacjaKoncowa);
-            model.addAttribute("kursList", kursList);
-            return "/views/listKurs";
-        } else return "redirect:/";
+            if (kursList.isEmpty()) {
+                model.addAttribute("empty", true);
+                return "/index";
+            } else {
+                model.addAttribute("kursList", kursList);
+                return "/views/listKurs";
+            }
+        } else {
+            return "redirect:/";
+        }
     }
 
     @GetMapping("/home")
