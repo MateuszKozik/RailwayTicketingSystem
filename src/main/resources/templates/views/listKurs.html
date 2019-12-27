@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/main_layout}">     
+    <head>
+        <title>Lista kursów</title>               
+    </head>
+
+    <body>       
+        <div layout:fragment="content" class="container mt-2">
+            <div th:if="${#lists.isEmpty(kursList)}" class="row">
+                <div class="col-md-6 offset-md-3 text-center">
+                    <div class="alert alert-info alert-dismissible fade show" role="alert">
+                        Brak kursów na wybranej trasie!
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Zamknij">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div> 
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-12">
+                    <div th:if="${not #lists.isEmpty(kursList)}" class="table-responsive mt-2">
+                        <table class="table">          
+                            <thead>
+                                <tr  class="active">
+                                    <th>Data kursu</th>  
+                                    <th>Wolne pierwsza klasa</th>  
+                                    <th>Wolne druga klasa</th>
+                                    <th>Stacja początkowa</th>
+                                    <th>Stacja końcowa</th>
+                                </tr>
+
+                            </thead>
+                            <tbody>                       
+                                <tr th:each ="kurs : ${kursList}">                                     
+                                    <td> <b  th:text="${kurs.dataKursu}">...</b> </td>
+                                    <td> <b  th:text="${kurs.miejscaPierwszaKlasa} - ${kurs.sprzedanePierwszaKlasa} ">...</b> </td>
+                                    <td> <b  th:text="${kurs.miejscaDrugaKlasa} - ${kurs.sprzedaneDrugaKlasa}">...</b> </td>
+                                    <td> <b  th:text="${kurs.pociag.stacjaPoczatkowa}">...</b> </td>
+                                    <td> <b  th:text="${kurs.pociag.stacjaKoncowa}">...</b> </td>   
+                                </tr>
+                            </tbody>          
+                        </table>    
+                    </div>    
+                </div>  
+            </div>
+
+        </div>
+
+    </body>
+</html>
+

@@ -9,12 +9,29 @@
     <body>
         <div layout:fragment="content" class="container">
             <div class="row">
-                <div class="col-md-4 my-2">
-                    <div class="h5">Obsługa adresów:</div>
-                        <a class="font-weight-bold" href="adres/list">Wypisz</a>     
-                </div>                
-            </div>     
-        </div>  
-       
+                <div class="col-md-6 text-center">
+                    <div class="jumbotron jumbotron-fluid">
+                        <div class="container">
+                            <h1 class="display-4">Wyszukiwarka kursów</h1>
+                            <form  class="input-group-lg" th:action="@{/listKurs}" method="POST">
+                                <input class="form-control mb-2" type="text" name="stacjaPoczatkowa" placeholder="Stacja początkowa"/> 
+                                <input class="form-control" type="text" name="stacjaKoncowa" placeholder="Stacja końcowa"/> 
+                                <button class="btn btn-info my-2 btn-lg" type="submit" >Wyszukaj</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h1 class="display-4 text-center">Aktualności</h1>
+                     <p class="lead text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                         Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                         reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
+                         sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
+                         totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae dicta sunt explicabo.</p>
+                </div>
+
+
+            </div>                
+        </div>     
     </body>
 </html>

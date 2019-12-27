@@ -2,6 +2,7 @@ package com.kozik.PKPTicket.services;
 
 import com.kozik.PKPTicket.entities.Kurs;
 import com.kozik.PKPTicket.repositories.KursRepository;
+import java.time.LocalDateTime;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,4 +27,19 @@ public class KursService {
     public void delete(long id){
         kursRepository.deleteById(id);
     } 
+    
+    public List<Kurs> findByStacjaPoczatkowa(String stacjaPoczatkowa){
+         LocalDateTime date = LocalDateTime.now();
+         return kursRepository.findByPociagStacjaPoczatkowaAndDataKursuGreaterThan(stacjaPoczatkowa, date);
+    }
+    
+    public List<Kurs> findByStacjaKoncowa(String stacjaKoncowa){
+           LocalDateTime date = LocalDateTime.now();
+           return kursRepository.findByPociagStacjaKoncowaAndDataKursuGreaterThan(stacjaKoncowa, date);
+    }
+    
+    public List<Kurs> findByStacje(String stacjaPoczatkowa, String StacjaKoncowa){
+          LocalDateTime date = LocalDateTime.now();
+          return kursRepository.findByPociagStacjaPoczatkowaAndPociagStacjaKoncowaAndDataKursuGreaterThan(stacjaPoczatkowa, StacjaKoncowa, date);
+    }
 }
