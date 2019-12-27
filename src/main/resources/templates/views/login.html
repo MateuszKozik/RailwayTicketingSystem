@@ -3,28 +3,26 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/main_layout}">  
     <head>
-        <title>Rejestracja</title>
+        <title>Logowanie</title>
     </head>
     <body>
         <div layout:fragment="content" class="container mt-2">
             <div class="row">
                 <div class="col-md-6 offset-md-3 text-center">
-                    <div class="alert alert-info alert-dismissible fade show" th:if="${exist}" role="alert">
-                        Istnieje użytkownik z takiem adresem e-email!
+                    <div class="alert alert-danger alert-dismissible fade show" th:if="${param.error}" role="alert">
+                        Błędny login lub hasło
                         <button type="button" class="close" data-dismiss="alert" aria-label="Zamknij">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div> 
                 </div>
             </div>
-
-            <form th:action="@{/register}" method="POST" th:object="${uzytkownik}">
+            <form th:action="@{/login}" method="POST">
                 <div class="row">                 
                     <div class="col-md-4 offset-md-4 text-center">                         
                         <div class="form-group">   
                             <label> Email </label>
-                            <input class="form-control" type="text" id="email" th:field="${uzytkownik.email}" required/> 
-                            <div class="text text-danger" th:if="${#fields.hasErrors('email')}" th:errors="${uzytkownik.email}"></div>
+                            <input class="form-control" type="text" id="email" name="username" required/>
                         </div>    
                     </div>    
                 </div>
@@ -32,18 +30,17 @@
                     <div class="col-md-4 offset-md-4 text-center">  
                         <div class="form-group">    
                             <label> Hasło </label>
-                            <input class=form-control type="password" id="haslo" th:field="${uzytkownik.haslo}" required/>          
-                            <div class="text text-danger" th:if="${#fields.hasErrors('haslo')}" th:errors="${uzytkownik.haslo}"
+                            <input class=form-control type="password" id="haslo" name="password" required/>  
                         </div>  
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-12 text-center">  
-                        <button type="submit" class="btn btn-success">Zarejestruj</button>
+                        <button type="submit" class="btn btn-success">Zaloguj</button>
                     </div>
                 </div>
-        </form>
-    </div>
-</body>
+            </form>
+        </div>
+    </body>
 </html>

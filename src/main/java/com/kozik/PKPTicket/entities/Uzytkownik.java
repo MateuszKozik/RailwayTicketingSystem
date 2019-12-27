@@ -28,7 +28,7 @@ public class Uzytkownik {
     private Long idUzytkownika;
  
     @NotEmpty
-    @Size(min = 5, max = 20)
+    @Size(min = 5)
     @Column(name = "haslo", nullable = false)
     private String haslo;
 
