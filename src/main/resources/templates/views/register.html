@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/main_layout}">  
+    <head>
+        <title>Rejestracja</title>
+    </head>
+    <body>
+        <div layout:fragment="content" class="container mt-2">
+            <div class="alert alert-info" th:if="${exist}">
+                <p class="text text-center">
+                    Istnieje użytkownik z takim e-mailem
+                </p>
+            </div>
+                
+            <form method="POST" th:object="${uzytkownik}">
+                <div class="row">                 
+                    <div class="col-md-4 offset-md-4 text-center">                         
+                        <div class="form-group">   
+                            <label> Email </label>
+                            <input class="form-control" type="text" th:field="${uzytkownik.email}" required/> 
+                            <div class="text text-danger" th:if="${#fields.hasErrors('email')}" th:errors="${uzytkownik.email}"></div>
+                      </div>    
+                    </div>    
+                </div>
+                <div class="row">
+                    <div class="col-md-4 offset-md-4 text-center">  
+                        <div class="form-group">    
+                            <label> Hasło </label>
+                            <input class=form-control type="password" th:field="${uzytkownik.haslo}" required/>          
+                            <div class="text text-danger" th:if="${#fields.hasErrors('haslo')}" th:errors="${uzytkownik.haslo}"
+                        </div>  
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 text-center">  
+                        <button type="submit" class="btn btn-success">Zarejestruj</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

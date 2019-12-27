@@ -14,4 +14,8 @@ public class UprawnieniaService {
     public List<Uprawnienia> listAll(){
         return uprawnieniaRepository.findAll();
     }
+    
+    public Uprawnienia getUser(){
+        return uprawnieniaRepository.findById("user").get();
+    }
 }

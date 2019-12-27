@@ -28,4 +28,8 @@ public class UzytkownikService {
     public void delete(String email){
        uzytkownikRepository.deleteById(email);
     }
+
+    public boolean isUserPresent(String email) {
+      return uzytkownikRepository.existsById(email);
+    }
 }
