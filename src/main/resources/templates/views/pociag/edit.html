@@ -7,7 +7,7 @@
     </head>
     <body>
         <div layout:fragment="content" class="container mt-2">
-            <form method="POST" th:object="${pociag}">                
+            <form th:action="@{|/pociag/edit/${id}|}" method="POST" th:object="${pociag}">                
                 <div class="row" >                 
                     <div class="col-md-4 offset-md-4 text-center">                         
                         <div class="form-group">                                          

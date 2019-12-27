@@ -4,12 +4,10 @@
       layout:decorate="~{fragments/main_layout}">  
     <head>
         <title>Edycja maszynisty</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
     </head>
     <body>
         <div layout:fragment="content" class="container mt-2">
-            <form method="POST" th:object="${maszynista}">
+            <form th:action="@{|/maszynista/edit/${id}|}" method="POST" th:object="${maszynista}">
                 <div class="row">        
                     <div class="col-md-4 offset-md-4 text-center">                         
                         <div class="form-group">  
