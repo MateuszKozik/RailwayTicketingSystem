@@ -7,15 +7,16 @@
     </head>
     <body>
         <div layout:fragment="content" class="container mt-2">
-            <div class="alert alert-success">
-                <p class="text text-center">
-                    Rejestracja udana!!      
-                </p>
-                <p class="text text-center">
-                    Zaloguj się, aby kontynuować      
-                </p>
+            <div class="row">
+                <div class="col-md-6 offset-md-3 text-center">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        Rejestracja udana! <a href="#" class="alert-link">Zaloguj się,</a> aby kontynuuować
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Zamknij">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div> 
+                </div>
             </div>
         </div>
-    </div>
-</body>
+    </body>
 </html>

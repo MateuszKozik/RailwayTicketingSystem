@@ -7,12 +7,17 @@
     </head>
     <body>
         <div layout:fragment="content" class="container mt-2">
-            <div class="alert alert-info" th:if="${exist}">
-                <p class="text text-center">
-                    Istnieje użytkownik z takim e-mailem
-                </p>
+            <div class="row">
+                <div class="col-md-6 offset-md-3 text-center">
+                    <div class="alert alert-info alert-dismissible fade show" th:if="${exist}" role="alert">
+                        Istnieje użytkownik z takiem adresem e-email!
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Zamknij">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div> 
+                </div>
             </div>
-                
+
             <form method="POST" th:object="${uzytkownik}">
                 <div class="row">                 
                     <div class="col-md-4 offset-md-4 text-center">                         
@@ -20,7 +25,7 @@
                             <label> Email </label>
                             <input class="form-control" type="text" th:field="${uzytkownik.email}" required/> 
                             <div class="text text-danger" th:if="${#fields.hasErrors('email')}" th:errors="${uzytkownik.email}"></div>
-                      </div>    
+                        </div>    
                     </div>    
                 </div>
                 <div class="row">
@@ -38,7 +43,7 @@
                         <button type="submit" class="btn btn-success">Zarejestruj</button>
                     </div>
                 </div>
-            </form>
-        </div>
-    </body>
+        </form>
+    </div>
+</body>
 </html>
