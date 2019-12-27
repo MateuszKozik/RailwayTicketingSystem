@@ -21,7 +21,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication()
-                .passwordEncoder(new BCryptPasswordEncoder())
+                .passwordEncoder(new BCryptPasswordEncoder()).rolePrefix("ROLE_")
                 .dataSource(dataSource)
                 .usersByUsernameQuery("select email as principal, haslo as credentials, enabled from uzytkownik where email=?")
                 .authoritiesByUsernameQuery("select uzytkownik_email as principal, uprawnienia_nazwa as role from uzytkownik_uprawnienia where uzytkownik_email = ? ");
