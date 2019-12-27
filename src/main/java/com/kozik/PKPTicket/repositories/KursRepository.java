@@ -11,6 +11,6 @@ public interface KursRepository extends JpaRepository<Kurs, Long> {
     List <Kurs> findByPociagStacjaPoczatkowaAndDataKursuGreaterThan( String stacjaPoczatkowa,LocalDateTime dataKursu);
     List <Kurs> findByPociagStacjaKoncowaAndDataKursuGreaterThan( String stacjaKoncowa,LocalDateTime dataKursu);
     List <Kurs> findByPociagStacjaPoczatkowaAndPociagStacjaKoncowaAndDataKursuGreaterThan(String stacjaPoczatkowa, String stacjaKoncowa, LocalDateTime dataKursu);
-    List <Kurs> findByDataKursu(String dataKursu);
+    List <Kurs> findByDataKursuGreaterThan(LocalDateTime dataKursu);
     long countByDataKursu(LocalDate dataKursu);
 }

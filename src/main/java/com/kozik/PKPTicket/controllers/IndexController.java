@@ -23,8 +23,15 @@ public class IndexController {
         return "/index";
     }
 
-    @RequestMapping(value = "/listKurs", method = RequestMethod.POST)
-    public String showIndexPage(Model model,
+    @RequestMapping(value = "/kursy", method = RequestMethod.GET)
+    public String showListKurs(Model model){
+        List<Kurs> kursList = kursService.fimdByDate();
+        model.addAttribute("kursList", kursList);
+        return  "/views/listKurs";
+    }
+    
+    @RequestMapping(value = "/kursy", method = RequestMethod.POST)
+    public String showListKurs(Model model,
             @RequestParam(name = "stacjaPoczatkowa", required = false) String stacjaPoczatkowa,
             @RequestParam(name = "stacjaKoncowa", required = false) String stacjaKoncowa) {
         List<Kurs> kursList = null;

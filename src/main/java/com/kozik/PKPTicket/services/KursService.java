@@ -42,4 +42,9 @@ public class KursService {
           LocalDateTime date = LocalDateTime.now();
           return kursRepository.findByPociagStacjaPoczatkowaAndPociagStacjaKoncowaAndDataKursuGreaterThan(stacjaPoczatkowa, StacjaKoncowa, date);
     }
+    
+    public List<Kurs> fimdByDate(){
+        LocalDateTime date = LocalDateTime.now();
+        return kursRepository.findByDataKursuGreaterThan(date);
+    }
 }
