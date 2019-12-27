@@ -3,14 +3,18 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/main_layout}">     
     <head>
+        <script type="text/javascript" src="/js/search.js"></script>
         <title>Lista pociągów</title>               
     </head>
 
     <body>       
-        <div layout:fragment="content" class="container">
+        <div layout:fragment="content" class="container mt-2">
             <div class="row">
-                <div class="col-md-4 mt-2">
+                <div class="col-md-4 my-1">
                     <a href="add" class="btn btn-info" role="button">Dodaj pociąg</a>
+                </div>
+                 <div class="col-md-4 offset-md-4 my-1">
+                    <input type="search"  placeholder="Szukaj..." class="form-control search-input border-info" id="search"/>
                 </div>
             </div>
             <div class="table-responsive mt-2">
@@ -26,7 +30,7 @@
                         </tr>
 
                     </thead>
-                    <tbody>                       
+                    <tbody id="table">                       
                         <tr th:each ="pociag : ${pociagList}">                                     
                             <td> <b  th:text="${pociag.nazwa}">...</b> </td>
                             <td> <b  th:text="${pociag.stacjaPoczatkowa}">...</b> </td>

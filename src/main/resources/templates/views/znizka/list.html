@@ -2,15 +2,19 @@
 <html xmlns:th="http://www.thymeleaf.com"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/main_layout}">  
-    <head>        
+    <head>       
+        <script type="text/javascript" src="/js/search.js"></script>
         <title>Lista zniżek</title>               
     </head>
 
     <body>
         <div layout:fragment="content" class="container mt-2">                
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-4 my-1">
                     <a href="add" class="btn btn-info" role="button">Dodaj zniżkę</a>
+                </div>
+                <div class="col-md-4 offset-md-4 my-1">
+                    <input type="search"  placeholder="Szukaj..." class="form-control search-input border-info" id="search"/>
                 </div>
             </div>
             <div class="table-responsive mt-2">
@@ -22,7 +26,7 @@
                             <th>Akcje</th>
                         </tr>
                     </thead>
-                    <tbody>                       
+                    <tbody id="table">                       
                         <tr th:each ="znizka: ${znizkaList}">                                     
                             <td> <b  th:text="${znizka.opis}">...</b> </td>
                             <td> <b  th:text="${znizka.procentZnizki}+'%'">...</b> </td>
