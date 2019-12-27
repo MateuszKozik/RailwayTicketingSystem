@@ -26,8 +26,12 @@
                                 <option value="">Wybierz kurs</option>
                                 <option th:each="kurs : ${kursList}"
                                         th:value="${kurs.idKursu}"
-                                        th:text="${kurs.pociag} ? ${kurs.dataKursu}+', '+ ${kurs.pociag.stacjaPoczatkowa} 
-                                        + ' - ' + ${kurs.pociag.stacjaKoncowa} : ${kurs.dataKursu}">
+                                        th:text="${kurs.pociag} ? ${#strings.substring(kurs.dataKursu,8,10)} + '-' +  ${#strings.substring(kurs.dataKursu,5,7)} 
+                                             +'-'+ ${#strings.substring(kurs.dataKursu,0,4)}  + ' ' +${#strings.substring(kurs.dataKursu,11,13)}
+                                             + ':' +${#strings.substring(kurs.dataKursu,14,16)}+', '+ ${kurs.pociag.stacjaPoczatkowa} 
+                                        + ' - ' + ${kurs.pociag.stacjaKoncowa} : ${#strings.substring(kurs.dataKursu,8,10)} + '-' +  ${#strings.substring(kurs.dataKursu,5,7)} 
+                                             +'-'+ ${#strings.substring(kurs.dataKursu,0,4)}  + ' ' +${#strings.substring(kurs.dataKursu,11,13)}
+                                             + ':' +${#strings.substring(kurs.dataKursu,14,16)}">
                                 </option>
                             </select>
                         </div>

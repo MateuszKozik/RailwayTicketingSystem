@@ -3,7 +3,6 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/main_layout}">     
     <head>
-        <script type="text/javascript" src="/js/search.js"></script>
         <title>Lista biletów</title>               
     </head>
 
@@ -25,11 +24,12 @@
                             <th>Klasa</th> 
                             <th>Akcje</th>
                         </tr>
-
                     </thead>
-                    <tbody id="table">                       
+                    <tbody>                       
                         <tr th:each ="bilet : ${biletList}">                                     
-                            <td> <b  th:text="${bilet.dataZakupu}">...</b> </td>
+                            <td> <b  th:text="${#strings.substring(bilet.dataZakupu,8,10)} + '-' +  ${#strings.substring(bilet.dataZakupu,5,7)} 
+                                             +'-'+ ${#strings.substring(bilet.dataZakupu,0,4)}  + ' ' +${#strings.substring(bilet.dataZakupu,11,13)}
+                                             + ':' +${#strings.substring(bilet.dataZakupu,14,16)} ">...</b> </td>
                             <td> <b  th:text="${bilet.klasa}">...</b> </td>
                             <td>
                                 <a class="btn btn-danger" th:href="'#modal'+${bilet.idBiletu}" data-toggle="modal">Usuń</a>

@@ -32,7 +32,9 @@
                     </thead>
                     <tbody id="table">                       
                         <tr th:each ="kurs : ${kursList}">                                     
-                            <td> <b  th:text="${kurs.dataKursu}">...</b> </td>
+                            <td> <b  th:text="${#strings.substring(kurs.dataKursu,8,10)} + '-' +  ${#strings.substring(kurs.dataKursu,5,7)} 
+                                             +'-'+ ${#strings.substring(kurs.dataKursu,0,4)}  + ' ' +${#strings.substring(kurs.dataKursu,11,13)}
+                                             + ':' +${#strings.substring(kurs.dataKursu,14,16)} ">...</b> </td>
                             <td> <b  th:text="${kurs.miejscaPierwszaKlasa}">...</b> </td>
                             <td> <b  th:text="${kurs.miejscaDrugaKlasa}">...</b> </td>
                             <td> <b  th:text="${kurs.sprzedanePierwszaKlasa}">...</b> </td>

@@ -3,6 +3,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/main_layout}">     
     <head>
+        <script type="text/javascript" src="/js/search.js"></script>
         <title>Lista kursów</title>               
     </head>
 
@@ -11,7 +12,7 @@
             <div class="row text-center">
                 <div class="col-md-12">
                     <div th:if="${not #lists.isEmpty(kursList)}" class="table-responsive mt-2">
-                        <table class="table">          
+                        <table id="table" class="table">          
                             <thead>
                                 <tr class="active">
                                     <th>Data kursu</th>  
@@ -24,7 +25,9 @@
                             </thead>
                             <tbody>                       
                                 <tr th:each ="kurs : ${kursList}">                                     
-                                    <td> <b  th:text="${kurs.dataKursu}">...</b> </td>
+                                    <td> <b  th:text="${#strings.substring(kurs.dataKursu,8,10)} + '-' +  ${#strings.substring(kurs.dataKursu,5,7)} 
+                                             +'-'+ ${#strings.substring(kurs.dataKursu,0,4)}  + ' ' +${#strings.substring(kurs.dataKursu,11,13)}
+                                             + ':' +${#strings.substring(kurs.dataKursu,14,16)} ">...</b> </td>
                                     <td> <b  th:text="${kurs.miejscaPierwszaKlasa} - ${kurs.sprzedanePierwszaKlasa} ">...</b> </td>
                                     <td> <b  th:text="${kurs.miejscaDrugaKlasa} - ${kurs.sprzedaneDrugaKlasa}">...</b> </td>
                                     <td> <b  th:text="${kurs.pociag.stacjaPoczatkowa}">...</b> </td>
