@@ -20,6 +20,7 @@
                                     <th>Wolne druga klasa</th>
                                     <th>Stacja początkowa</th>
                                     <th>Stacja końcowa</th>
+                                    <th>Zakup</th>
                                 </tr>
 
                             </thead>
@@ -31,7 +32,8 @@
                                     <td> <b  th:text="${kurs.miejscaPierwszaKlasa} - ${kurs.sprzedanePierwszaKlasa} ">...</b> </td>
                                     <td> <b  th:text="${kurs.miejscaDrugaKlasa} - ${kurs.sprzedaneDrugaKlasa}">...</b> </td>
                                     <td> <b  th:text="${kurs.pociag.stacjaPoczatkowa}">...</b> </td>
-                                    <td> <b  th:text="${kurs.pociag.stacjaKoncowa}">...</b> </td>   
+                                    <td> <b  th:text="${kurs.pociag.stacjaKoncowa}">...</b> </td>
+                                    <td> <a class="btn btn-primary " th:href="@{'/klient/zakup/' + ${kurs.idKursu}}">Kup</a></td>
                                 </tr>
                             </tbody>          
                         </table>    
