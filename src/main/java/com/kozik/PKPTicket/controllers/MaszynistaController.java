@@ -44,6 +44,7 @@ public class MaszynistaController {
     public String save(@ModelAttribute("maszynista") Maszynista maszynista,
             @RequestParam(name = "adres")Adres adres,
             @RequestParam(name = "uzytkownik") Uzytkownik uzytkownik){
+        maszynista.setUzytkownik(uzytkownik);
         maszynista.setAdres(adres);
         maszynistaService.save(maszynista);
         return "redirect:/maszynista/list";
@@ -67,6 +68,7 @@ public class MaszynistaController {
             @RequestParam(name = "uzytkownik") Uzytkownik uzytkownik){ 
         maszynista.setIdMaszynisty(id);
         maszynista.setAdres(adres);
+        maszynista.setUzytkownik(uzytkownik);
         maszynistaService.save(maszynista);
         return "redirect:/maszynista/list";
     }

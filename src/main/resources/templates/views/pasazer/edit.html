@@ -35,6 +35,58 @@
                     </div>
                 </div>
 
+                  <div class="row">
+                    <div class="col-md-4 offset-md-4 text-center"> 
+                        <div class="form-group">  
+                            <label> Adres </label>
+                            <select class="form-control" name="adres">
+                                <option
+                                    th:value="${pasazer.adres} ? ${pasazer.adres.idAdresu} : ''" 
+                                    th:text="${pasazer.adres} ? ${pasazer.adres.ulica}+' '+${pasazer.adres.numerDomu} : 'Wybierz adres'">          
+                                </option>
+                                <option value="">
+                                    Wybierz adres
+                                </option>
+                                <option th:each="adres : ${adresList}"
+                                        th:if="${adres.numerMieszkania != ''}"
+                                        th:value="${adres.idAdresu}"
+                                        th:text="${adres.ulica}+' '+${adres.numerDomu} + '/' +
+                                        ${adres.numerMieszkania} + ',  ' + ${adres.kodPocztowy}
+                                        + ' ' + ${adres.miejscowosc}">
+                                </option>
+                                <option th:each="adres : ${adresList}"
+                                        th:if="${adres.numerMieszkania == ''}"
+                                        th:value="${adres.idAdresu}"
+                                        th:text="${adres.ulica}+' '+${adres.numerDomu}
+                                        + ',  ' + ${adres.kodPocztowy} + ' ' + ${adres.miejscowosc}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 offset-md-4 text-center"> 
+                        <div class="form-group">  
+                            <label> Użytkownik </label>
+                            <select class="form-control" name="uzytkownik">
+                                <option
+                                    th:value="${pasazer.uzytkownik} ? ${pasazer.uzytkownik.email} : ''" 
+                                    th:text="${pasazer.uzytkownik} ? ${pasazer.uzytkownik.email} : 'Wybierz użytkownika'">          
+                                </option>
+                                <option value="">
+                                    Wybierz użytkownika
+                                </option>
+
+                                <option th:each="uzytkownik : ${uzytkownikList}"        
+                                        th:value="${uzytkownik.email}"
+                                        th:text="${uzytkownik.email}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="row">
                     <div class="col-md-12 text-center">  
                         <button type="submit" class="btn btn-primary">Zapisz</button>
