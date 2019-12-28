@@ -27,4 +27,12 @@ public class PasazerService {
     public void delete(long id){
         pasazerRepository.deleteById(id);
     }
+    
+    public Pasazer getByEmail(String email){
+        return pasazerRepository.findByUzytkownikEmail(email);
+    }
+    
+    public boolean isPasazerPresent(String email){
+            return pasazerRepository.existsByUzytkownikEmail(email);
+    }
 }

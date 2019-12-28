@@ -26,4 +26,8 @@ public class AdresService {
     public void delete(Long id){
         adresRepository.deleteById(id);
     }
+    
+    public Adres getByPasazer(Long id){
+        return adresRepository.findByPasazerIdPasazera(id);
+    }
 }
