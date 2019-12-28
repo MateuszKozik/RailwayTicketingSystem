@@ -50,6 +50,11 @@
                 <li class="nav-item" sec:authorize="!hasRole('ROLE_admin')">
                     <a class="nav-link active" href="/kursy"> Kursy </a>
                 </li>
+                
+                 <li class="nav-item" sec:authorize="hasRole('ROLE_user')">
+                    <a class="nav-link active" href="/klient/edit"> Profil </a>
+                </li>
+                
             </ul>
 
             <form class="form-inline" sec:authorize="!isAuthenticated()">
