@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/main_layout}">     
+    <head>
+        <title>Zakup biletu</title>               
+    </head>
+    <body>       
+        <div layout:fragment="content" class="container mt-2">
+            <form th:action="@{|/klient/zakup/${id}|}" method="POST">  
+                <div class="row">
+                    <div class="col-md-4 offset-md-1">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class="h5"> Data kursu </label>
+                                <p th:text="${#strings.substring(kurs.dataKursu,8,10)} + '-' +  ${#strings.substring(kurs.dataKursu,5,7)} 
+                                   +'-'+ ${#strings.substring(kurs.dataKursu,0,4)}  + 'r. ' +${#strings.substring(kurs.dataKursu,11,13)}
+                                   + ':' +${#strings.substring(kurs.dataKursu,14,16)}"> </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class="h5"> Relacja </label>
+                                <p th:text="${kurs.pociag.stacjaPoczatkowa} + ' - ' + ${kurs.pociag.stacjaKoncowa}"> </p>
+                            </div>
+                        </div>    
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class="h5"> Cena w pierwszej klasie</label>
+                                <p th:text="${#numbers.formatCurrency(kurs.pociag.cenaPierwszaKlasa)}"></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class="h5"> Cena w drugiej klasie</label>
+                                <p th:text="${#numbers.formatCurrency(kurs.pociag.cenaDrugaKlasa)}"></p> 
+                            </div>
+                        </div>            
+                    </div>
+
+                    <div class="col-md-4 offset-md-2">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class="h5"> Miejsce </label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="klasa" value="1" checked>
+                                    <label class="form-check-label">
+                                        Pierwsza klasa
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="klasa" value="2">
+                                    <label class="form-check-label">
+                                        Druga klasa
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row my-2">
+                            <div class="col-md-12"> 
+                                <div class="form-group">  
+                                    <label class="h5"> Zniżka </label>
+                                    <select class="form-control" name="znizka">
+                                        <option value="">Wybierz zniżkę</option>
+                                        <option th:each="znizka : ${znizkaList}"
+                                                th:value="${znizka.idZnizki}"
+                                                th:text="${znizka.opis}+' '+${znizka.procentZnizki} + '%'">
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-center">  
+                        <button type="submit" class="btn btn-primary">Zakup</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

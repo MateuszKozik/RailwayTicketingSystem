@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/main_layout}">     
+    <head>
+         <meta http-equiv="refresh" content="5;url=/profile" />
+        <title>Podsumowanie</title>               
+    </head>
+    <body>       
+        <div layout:fragment="content" class="container mt-2">
+
+            <div th:if="${transactionSuccess}" class="row">
+                <div class="col-md-6 offset-md-3 text-center">
+                    <div class="alert alert-info alert-dismissible fade show" role="alert">
+                        Zakup udany!
+                        <p>Za 5 sekund zostaniesz przeniesiony na stronę główną</p>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Zamknij">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div> 
+                </div>
+            </div>
+            <div th:if="${transactionFalse}" class="row">
+                <div class="col-md-6 offset-md-3 text-center">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        Brak wolnych miejsc!
+                        <p>Za 5 sekund zostaniesz przeniesiony na Stronę Główną</p>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Zamknij">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

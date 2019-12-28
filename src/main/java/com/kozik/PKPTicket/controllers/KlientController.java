@@ -90,8 +90,8 @@ public class KlientController {
                 bilet.setZnizka(znizka);
                 bilet.setPasazer(pasazer);
                 biletService.save(bilet);
-                model.addAttribute("transaction", true);
-                return "/kursy";
+                model.addAttribute("transactionSuccess", true);
+                return "views/klient/transaction";
             }else if((Integer.parseInt(klasa) == 2) && kursService.secondClassAvaliable(kurs)){
                 Bilet bilet = new Bilet();
                 bilet.setKlasa(klasa);
@@ -99,11 +99,11 @@ public class KlientController {
                 bilet.setZnizka(znizka);
                 bilet.setPasazer(pasazer);
                 biletService.save(bilet);
-                model.addAttribute("transaction", true);
-                return "/kursy";
+                model.addAttribute("transactionSuccess", true);
+                return "views/klient/transaction";
             } else {
-                model.addAttribute("transaction", false);
-                return "/kursy";
+                model.addAttribute("transactionFalse", true);
+                return "views/klient/transaction";
             } 
     }
 }
