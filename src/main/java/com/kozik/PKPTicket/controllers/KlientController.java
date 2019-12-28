@@ -78,12 +78,15 @@ public class KlientController {
     
     @RequestMapping(value = "/klient/zakup/{id}", method = RequestMethod.POST)
     public String buy(@PathVariable(name = "id") long id,
-            @RequestParam(name = "znizka", required = false)Znizka znizka,
+            @RequestParam(name = "znizka", required = false) Znizka znizka,
             @RequestParam(name = "klasa") String klasa,
-            Principal principal, Model model){
+            Principal principal, Model model) {
+        String email = principal.getName();
+
+        if (pasazerService.isPasazerPresent(email)) {
             Pasazer pasazer = pasazerService.getByEmail(principal.getName());
             Kurs kurs = kursService.get(id);
-            if((Integer.parseInt(klasa) == 1) && kursService.fistClassAvaliable(kurs)){
+            if ((Integer.parseInt(klasa) == 1) && kursService.fistClassAvaliable(kurs)) {
                 Bilet bilet = new Bilet();
                 bilet.setKlasa(klasa);
                 bilet.setKurs(kurs);
@@ -92,7 +95,7 @@ public class KlientController {
                 biletService.save(bilet);
                 model.addAttribute("transactionSuccess", true);
                 return "views/klient/transaction";
-            }else if((Integer.parseInt(klasa) == 2) && kursService.secondClassAvaliable(kurs)){
+            } else if ((Integer.parseInt(klasa) == 2) && kursService.secondClassAvaliable(kurs)) {
                 Bilet bilet = new Bilet();
                 bilet.setKlasa(klasa);
                 bilet.setKurs(kurs);
@@ -104,6 +107,10 @@ public class KlientController {
             } else {
                 model.addAttribute("transactionFalse", true);
                 return "views/klient/transaction";
-            } 
+            }
+        } else {
+            model.addAttribute("userDataFalse", true);
+            return "/views/klient/transaction";
+        }
     }
 }
