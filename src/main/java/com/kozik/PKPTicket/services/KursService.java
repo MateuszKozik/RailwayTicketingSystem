@@ -47,4 +47,22 @@ public class KursService {
         LocalDateTime date = LocalDateTime.now();
         return kursRepository.findByDataKursuGreaterThan(date);
     }
+    
+    public boolean fistClassAvaliable(Kurs kurs) {
+        Integer n = kurs.getMiejscaPierwszaKlasa() - kurs.getSprzedanePierwszaKlasa();
+        if (n > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean secondClassAvaliable(Kurs kurs) {
+        Integer n = kurs.getMiejscaDrugaKlasa() - kurs.getSprzedaneDrugaKlasa();
+        if (n > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
