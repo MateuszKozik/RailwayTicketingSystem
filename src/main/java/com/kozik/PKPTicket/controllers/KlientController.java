@@ -25,12 +25,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class KlientController {
 
-    @Autowired private UzytkownikService uzytkownikService;
-    @Autowired private PasazerService pasazerService;
-    @Autowired private AdresService adresService;
-    @Autowired private KursService kursService;
-    @Autowired private ZnizkaService znizkaService;
-    @Autowired private BiletService biletService;
+    @Autowired
+    private UzytkownikService uzytkownikService;
+    @Autowired
+    private PasazerService pasazerService;
+    @Autowired
+    private AdresService adresService;
+    @Autowired
+    private KursService kursService;
+    @Autowired
+    private ZnizkaService znizkaService;
+    @Autowired
+    private BiletService biletService;
 
     @RequestMapping(value = "/klient/edit", method = RequestMethod.GET)
     public String edit(Model model, Principal principal) {
@@ -75,7 +81,7 @@ public class KlientController {
         model.addAttribute("znizkaList", znizkaList);
         return "views/klient/buy";
     }
-    
+
     @RequestMapping(value = "/klient/zakup/{id}", method = RequestMethod.POST)
     public String buy(@PathVariable(name = "id") long id,
             @RequestParam(name = "znizka", required = false) Znizka znizka,
@@ -111,6 +117,21 @@ public class KlientController {
         } else {
             model.addAttribute("userDataFalse", true);
             return "/views/klient/transaction";
+        }
+    }
+
+    @RequestMapping(value = "/klient/tickets", method = RequestMethod.GET)
+    public String tickets(Model model, Principal principal) {
+        String email = principal.getName();
+        Pasazer pasazer = pasazerService.getByEmail(email);
+        List<Bilet> biletList = biletService.getByPasazer(pasazer);
+        if (biletList.isEmpty()) {
+            model.addAttribute("empty", true);
+            model.addAttribute("biletList", biletList);
+            return "/views/klient/tickets";
+        } else {
+            model.addAttribute("biletList", biletList);
+            return "/views/klient/tickets";
         }
     }
 }

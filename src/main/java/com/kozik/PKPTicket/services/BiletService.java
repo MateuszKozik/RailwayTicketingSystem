@@ -2,6 +2,7 @@ package com.kozik.PKPTicket.services;
 
 import com.kozik.PKPTicket.entities.Bilet;
 import com.kozik.PKPTicket.entities.Kurs;
+import com.kozik.PKPTicket.entities.Pasazer;
 import com.kozik.PKPTicket.repositories.BiletRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +49,10 @@ public class BiletService {
     
     public void delete(long id){
         biletRepository.deleteById(id);
+    }
+    
+    public List<Bilet> getByPasazer(Pasazer pasazer){
+        return biletRepository.findByPasazer(pasazer);
     }
     
 }

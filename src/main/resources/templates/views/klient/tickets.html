@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/main_layout}">     
+    <head>
+        <script type="text/javascript" src="/js/search.js"></script>
+        <title>List biletów</title>               
+    </head>
+    <body>       
+        <div layout:fragment="content" class="container mt-2">
+           <div th:if="${empty}" class="row">
+                <div class="col-md-6 offset-md-3 text-center">
+                    <div class="alert alert-info alert-info fade show" role="alert">
+                        Nie masz jeszcze żadnego biletu!
+                    </div> 
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 my-1">
+                    <input th:if="${not #lists.isEmpty(biletList)}" type="search"  placeholder="Szukaj..." class="form-control search-input border-primary" id="search"/>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-12">
+                    <div th:if="${not #lists.isEmpty(biletList)}" class="table-responsive mt-2">
+                        <table class="table">          
+                            <thead>
+                                <tr class="active">
+                                    <th>Data zakupu</th>  
+                                    <th>Data kursu</th>  
+                                    <th>Relacja</th>
+                                    <th>Klasa</th>
+                                    <th>Koszt</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table">                       
+                                <tr th:each ="bilet : ${biletList}">                                     
+                                    <td> <b th:text="${#strings.substring(bilet.dataZakupu,8,10)} + '-' +  ${#strings.substring(bilet.dataZakupu,5,7)} 
+                                            +'-'+ ${#strings.substring(bilet.dataZakupu,0,4)}  + ' ' +${#strings.substring(bilet.dataZakupu,11,13)}
+                                            + ':' +${#strings.substring(bilet.dataZakupu,14,16)} ">...</b> </td>
+                                    <td> <b  th:text="${#strings.substring(bilet.kurs.dataKursu,8,10)} + '-' +  ${#strings.substring(bilet.kurs.dataKursu,5,7)} 
+                                             +'-'+ ${#strings.substring(bilet.kurs.dataKursu,0,4)}  + ' ' +${#strings.substring(bilet.kurs.dataKursu,11,13)}
+                                             + ':' +${#strings.substring(bilet.kurs.dataKursu,14,16)} ">...</b> </td>      
+                                    <td> <b th:text="${bilet.kurs.pociag.stacjaPoczatkowa} + ' - ' + ${bilet.kurs.pociag.stacjaKoncowa} ">...</b></td>
+                                    <td>
+                                        <b th:if="${bilet.klasa} == 1"> Pierwsza</b>
+                                        <b th:unless="${bilet.klasa} == 1">Druga</b>
+                                    </td>
+                                    <td th:if="${bilet.klasa} == 1">
+                                        <b th:if="${bilet.znizka}" th:text="${#numbers.formatCurrency((100 - bilet.znizka.procentZnizki) * bilet.kurs.pociag.cenaPierwszaKlasa / 100)}"></b>                                            
+                                        <b th:unless="${bilet.znizka}" th:text="${bilet.kurs.pociag.cenaPierwszaKlasa}"></b>
+                                    </td>
+                                    <td th:if="${bilet.klasa} == 2">
+                                        <b th:if="${bilet.znizka}" th:text="${#numbers.formatCurrency((100 - bilet.znizka.procentZnizki) * bilet.kurs.pociag.cenaDrugaKlasa / 100)}"></b>                                            
+                                        <b th:unless="${bilet.znizka}" th:text="${bilet.kurs.pociag.cenaDrugaKlasa}"></b>
+                                    </td>
+
+                                </tr>
+                            </tbody>          
+                        </table>    
+                    </div>    
+                </div>  
+            </div>
+        </div>
+    </body>
+</html>
