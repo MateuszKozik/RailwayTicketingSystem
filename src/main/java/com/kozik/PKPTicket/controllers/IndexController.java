@@ -25,7 +25,7 @@ public class IndexController {
 
     @RequestMapping(value = "/kursy", method = RequestMethod.GET)
     public String showListKurs(Model model){
-        List<Kurs> kursList = kursService.fimdByDate();
+        List<Kurs> kursList = kursService.findByDate();
         model.addAttribute("kursList", kursList);
         return  "/views/listKurs";
     }
