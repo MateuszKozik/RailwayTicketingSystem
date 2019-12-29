@@ -33,7 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/profile").hasAnyRole("user,admin,maszynista")
                 .antMatchers("/adres/**", "/bilet/**", "/kurs/**", "/maszynista/**","/pasazer/**","/pociag/**","/uzytkownik/**", "znizka/**").hasAnyRole("admin")
                 .antMatchers("/klient/**").hasAnyRole("user")
-                .antMatchers("/obsluga/**").hasAnyRole("maszynista")
+                .antMatchers("/obsluga/**").hasAnyRole("maszynista,admin")
                 .and().formLogin().loginPage("/login").permitAll()
                 .defaultSuccessUrl("/profile").and().logout().logoutSuccessUrl("/login");
     }

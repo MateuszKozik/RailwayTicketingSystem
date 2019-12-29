@@ -30,4 +30,8 @@ public class AdresService {
     public Adres getByPasazer(Long id){
         return adresRepository.findByPasazerIdPasazera(id);
     }
+    
+    public Adres getByMaszynista(long id){
+        return adresRepository.findByMaszynistaIdMaszynisty(id);
+    }
 }

@@ -9,5 +9,5 @@ public interface AdresRepository extends JpaRepository<Adres, Long>{
     public List<Adres> deleteByUlicaAndNumerDomu(String ulica, Integer nrDomu);
     public List<Adres> findByUlicaAndNumerDomu(String ulica, Integer nrDomu);
     public Adres findByPasazerIdPasazera(Long id);
-    
+    public Adres findByMaszynistaIdMaszynisty(Long id);
 }

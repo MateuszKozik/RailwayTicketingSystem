@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/main_layout}">     
+    <head>
+        <title>Profil</title>               
+    </head>
+    <body>       
+        <div layout:fragment="content" class="container mt-2">
+            <form th:action="@{/obsluga/edit}" method="POST">
+                <div class="row">        
+                    <div class="col-md-4 offset-md-1 text-center">                         
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">    
+                                    <label> Imię </label>
+                                    <input class=form-control type="text" th:field="${maszynista.idMaszynisty}" hidden readonly required/>     
+                                    <input class=form-control type="text" th:field="${maszynista.imie}" required/>           
+                                </div>
+                            </div>
+                        </div>  
+
+                        <div class="row"> 
+                            <div class="col-md-12">
+                                <div class="form-group">    
+                                    <label> Nazwisko </label>
+                                    <input class=form-control type="text" th:field="${maszynista.nazwisko}" required/>          
+                                </div>  
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">  
+                                <div class="form-group">    
+                                    <label> Pesel </label>
+                                    <input class=form-control type="number" th:field="${maszynista.pesel}" required/>            
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 offset-md-2 text-center"> 
+                        <div class="row">                 
+                            <div class="col-md-12">                         
+                                <div class="form-group">   
+                                    <label> Ulica </label>
+                                    <input class="form-control" type="text" th:field="${adres.idAdresu}" hidden readonly required/>
+                                    <input class="form-control" type="text" th:field="${adres.ulica}" required/>        
+                                </div>    
+                            </div>    
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">  
+                                <div class="form-group">    
+                                    <label> Numer domu </label>
+                                    <input class=form-control type="number" min="1" th:field="${adres.numerDomu}" required/>          
+                                </div>  
+                            </div>
+
+                            <div class="col-md-6">  
+                                <div class="form-group">    
+                                    <label> Numer mieszkania </label>
+                                    <input class=form-control type="number" min="1" th:field="${adres.numerMieszkania}"/>            
+                                </div> 
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">  
+                                <div class="form-group">    
+                                    <label> Kod pocztowy </label>
+                                    <input class=form-control type="text" th:field="${adres.kodPocztowy}" required/>            
+                                </div> 
+                            </div>
+                            <div class="col-md-6">  
+                                <div class="form-group">    
+                                    <label> Miejscowość </label>
+                                    <input class=form-control type="text" th:field="${adres.miejscowosc}" required/>            
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 text-center">  
+                        <button type="submit" class="btn btn-primary">Zapisz</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

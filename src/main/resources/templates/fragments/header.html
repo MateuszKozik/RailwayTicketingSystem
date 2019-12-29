@@ -20,6 +20,10 @@
                     <a class="nav-link active" sec:authorize="isAuthenticated()" href="/profile"> Strona Główna </a>
                 </li>
 
+                <li class="nav-item" sec:authorize="hasRole('ROLE_admin') or hasRole('ROLE_maszynista') ">
+                    <a class="nav-link active" href="/obsluga/edit"> Profil </a>
+                </li>
+                
                 <li class="nav-item" sec:authorize="hasRole('ROLE_admin')">
                     <a class="nav-link active" href="/adres/list"> Adresy </a>
                 </li>
@@ -52,17 +56,17 @@
                     <a class="nav-link active" href="/znizka/list"> Zniżki </a>
                 </li>
                 
-                <li class="nav-item" sec:authorize="hasRole('ROLE_user')">
+                <li class="nav-item" sec:authorize="hasRole('ROLE_user') and !hasRole('ROLE_maszynista') and !hasRole('ROLE_admin')">
                     <a class="nav-link active" href="/klient/edit"> Profil </a>
                 </li>
                 
-                <li class="nav-item" sec:authorize="hasRole('ROLE_user')">
+                <li class="nav-item" sec:authorize="hasRole('ROLE_user') and !hasRole('ROLE_maszynista') and !hasRole('ROLE_admin')">
                     <a class="nav-link active" href="/klient/tickets"> Bilety </a>
                 </li>
                 
                 <li class="nav-item" sec:authorize="!hasRole('ROLE_admin')">
                     <a class="nav-link active" href="/kursy"> Kursy </a>
-                </li>  
+                </li>
                 
                 <li class="nav-item" sec:authorize="hasRole('ROLE_maszynista')">
                     <a class="nav-link active" href="/obsluga/courses"> Obsługa </a>
