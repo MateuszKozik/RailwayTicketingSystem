@@ -17,7 +17,7 @@
                         </div>  
                     </div>
                 </div>
-                
+
                 <div class="row">
                     <div class="col-md-4 offset-md-4 text-center"> 
                         <div class="form-group">  
@@ -27,11 +27,11 @@
                                 <option th:each="kurs : ${kursList}"
                                         th:value="${kurs.idKursu}"
                                         th:text="${kurs.pociag} ? ${#strings.substring(kurs.dataKursu,8,10)} + '-' +  ${#strings.substring(kurs.dataKursu,5,7)} 
-                                             +'-'+ ${#strings.substring(kurs.dataKursu,0,4)}  + ' ' +${#strings.substring(kurs.dataKursu,11,13)}
-                                             + ':' +${#strings.substring(kurs.dataKursu,14,16)}+', '+ ${kurs.pociag.stacjaPoczatkowa} 
+                                        +'-'+ ${#strings.substring(kurs.dataKursu,0,4)}  + ' ' +${#strings.substring(kurs.dataKursu,11,13)}
+                                        + ':' +${#strings.substring(kurs.dataKursu,14,16)}+', '+ ${kurs.pociag.stacjaPoczatkowa} 
                                         + ' - ' + ${kurs.pociag.stacjaKoncowa} : ${#strings.substring(kurs.dataKursu,8,10)} + '-' +  ${#strings.substring(kurs.dataKursu,5,7)} 
-                                             +'-'+ ${#strings.substring(kurs.dataKursu,0,4)}  + ' ' +${#strings.substring(kurs.dataKursu,11,13)}
-                                             + ':' +${#strings.substring(kurs.dataKursu,14,16)}">
+                                        +'-'+ ${#strings.substring(kurs.dataKursu,0,4)}  + ' ' +${#strings.substring(kurs.dataKursu,11,13)}
+                                        + ':' +${#strings.substring(kurs.dataKursu,14,16)}">
                                 </option>
                             </select>
                         </div>
@@ -53,7 +53,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="row">
                     <div class="col-md-4 offset-md-4 text-center"> 
                         <div class="form-group">  
@@ -68,7 +68,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="row">
                     <div class="col-md-12 text-center">  
                         <button type="submit" class="btn btn-primary">Zapisz</button>
@@ -76,6 +76,5 @@
                 </div>
             </form>
         </div>
-    </div>
-</body>
+    </body>
 </html>

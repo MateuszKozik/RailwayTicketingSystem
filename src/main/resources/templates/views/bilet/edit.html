@@ -25,30 +25,30 @@
                         </div>  
                     </div>
                 </div>
-       
+
                 <div class="row">
                     <div class="col-md-4 offset-md-4 text-center"> 
                         <div class="form-group">  
                             <label> Kurs </label>
                             <select class="form-control" name="kurs">
-                                 <option
+                                <option
                                     th:value="${bilet.kurs} ? ${bilet.kurs.idKursu} : ''" 
                                     th:text="(${bilet.kurs} ? ( ${bilet.kurs.pociag} ? ${#strings.substring(bilet.kurs.dataKursu,8,10)} + '-' +  ${#strings.substring(bilet.kurs.dataKursu,5,7)} 
-                                             +'-'+ ${#strings.substring(bilet.kurs.dataKursu,0,4)}  + ' ' +${#strings.substring(bilet.kurs.dataKursu,11,13)}
-                                             + ':' +${#strings.substring(bilet.kurs.dataKursu,14,16)}+', '+ ${bilet.kurs.pociag.stacjaPoczatkowa} 
-                                        + ' - ' + ${bilet.kurs.pociag.stacjaKoncowa} : ${#strings.substring(bilet.kurs.dataKursu,8,10)} + '-' +  ${#strings.substring(bilet.kurs.dataKursu,5,7)} 
-                                             +'-'+ ${#strings.substring(bilet.kurs.dataKursu,0,4)}  + ' ' +${#strings.substring(bilet.kurs.dataKursu,11,13)}
-                                             + ':' +${#strings.substring(bilet.kurs.dataKursu,14,16)}) : 'Wybierz kurs') ">
+                                    +'-'+ ${#strings.substring(bilet.kurs.dataKursu,0,4)}  + ' ' +${#strings.substring(bilet.kurs.dataKursu,11,13)}
+                                    + ':' +${#strings.substring(bilet.kurs.dataKursu,14,16)}+', '+ ${bilet.kurs.pociag.stacjaPoczatkowa} 
+                                    + ' - ' + ${bilet.kurs.pociag.stacjaKoncowa} : ${#strings.substring(bilet.kurs.dataKursu,8,10)} + '-' +  ${#strings.substring(bilet.kurs.dataKursu,5,7)} 
+                                    +'-'+ ${#strings.substring(bilet.kurs.dataKursu,0,4)}  + ' ' +${#strings.substring(bilet.kurs.dataKursu,11,13)}
+                                    + ':' +${#strings.substring(bilet.kurs.dataKursu,14,16)}) : 'Wybierz kurs') ">
                                 </option>
                                 <option value="">Wybierz kurs</option>
                                 <option th:each="kurs : ${kursList}"
                                         th:value="${kurs.idKursu}"
                                         th:text="${kurs.pociag} ? ${#strings.substring(bilet.kurs.dataKursu,8,10)} + '-' +  ${#strings.substring(bilet.kurs.dataKursu,5,7)} 
-                                             +'-'+ ${#strings.substring(bilet.kurs.dataKursu,0,4)}  + ' ' +${#strings.substring(bilet.kurs.dataKursu,11,13)}
-                                             + ':' +${#strings.substring(bilet.kurs.dataKursu,14,16)}+', '+ ${kurs.pociag.stacjaPoczatkowa} 
+                                        +'-'+ ${#strings.substring(bilet.kurs.dataKursu,0,4)}  + ' ' +${#strings.substring(bilet.kurs.dataKursu,11,13)}
+                                        + ':' +${#strings.substring(bilet.kurs.dataKursu,14,16)}+', '+ ${kurs.pociag.stacjaPoczatkowa} 
                                         + ' - ' + ${kurs.pociag.stacjaKoncowa} : ${#strings.substring(bilet.kurs.dataKursu,8,10)} + '-' +  ${#strings.substring(bilet.kurs.dataKursu,5,7)} 
-                                             +'-'+ ${#strings.substring(bilet.kurs.dataKursu,0,4)}  + ' ' +${#strings.substring(bilet.kurs.dataKursu,11,13)}
-                                             + ':' +${#strings.substring(bilet.kurs.dataKursu,14,16)}">
+                                        +'-'+ ${#strings.substring(bilet.kurs.dataKursu,0,4)}  + ' ' +${#strings.substring(bilet.kurs.dataKursu,11,13)}
+                                        + ':' +${#strings.substring(bilet.kurs.dataKursu,14,16)}">
                                 </option>
                             </select>
                         </div>
@@ -75,13 +75,13 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="row">
                     <div class="col-md-4 offset-md-4 text-center"> 
                         <div class="form-group">  
                             <label> Zniżka </label>
                             <select class="form-control" name="znizka">
-                                   <option
+                                <option
                                     th:value="${bilet.znizka} ? ${bilet.znizka.idZnizki} : ''" 
                                     th:text="${bilet.znizka} ? ${bilet.znizka.opis}+'  '+${bilet.znizka.procentZnizki}
                                     : 'Wybierz zniżkę'">          
@@ -95,14 +95,13 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="row">
                     <div class="col-md-12 text-center">  
                         <button type="submit" class="btn btn-primary">Zapisz</button>
                     </div>
                 </div>
             </form>
-        </div>
         </div>
     </body>
 </html>
