@@ -9,6 +9,12 @@
 
     <body>       
         <div layout:fragment="content" class="container mt-2">
+            <div class="col-md-6 offset-md-3 text-center">
+                <div class="alert alert-info alert-dismissible fade show" th:if="${#lists.isEmpty(kursList)}" role="alert">
+                    Brak kursów do wyświetlenia!
+                </div> 
+            </div> 
+
             <div class="row text-center">
                 <div class="col-md-12">
                     <div th:if="${not #lists.isEmpty(kursList)}" class="table-responsive mt-2">
