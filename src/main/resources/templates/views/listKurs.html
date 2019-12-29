@@ -21,11 +21,12 @@
                         <table id="table" class="table">          
                             <thead>
                                 <tr class="active">
-                                    <th>Data kursu</th>  
-                                    <th>Wolne pierwsza klasa</th>  
+                                    <th>Data kursu</th> 
+                                    <th>Relacja</th>
+                                    <th>Wolne pierwsza klasa</th> 
+                                    <th>Cena</th>
                                     <th>Wolne druga klasa</th>
-                                    <th>Stacja początkowa</th>
-                                    <th>Stacja końcowa</th>
+                                    <th>Cena</th>                           
                                     <th sec:authorize="!hasRole('ROLE_admin') and !hasRole('ROLE_maszynista')">Zakup</th>
                                 </tr>
 
@@ -33,12 +34,13 @@
                             <tbody>                       
                                 <tr th:each ="kurs : ${kursList}">                                     
                                     <td> <b  th:text="${#strings.substring(kurs.dataKursu,8,10)} + '-' +  ${#strings.substring(kurs.dataKursu,5,7)} 
-                                             +'-'+ ${#strings.substring(kurs.dataKursu,0,4)}  + ' ' +${#strings.substring(kurs.dataKursu,11,13)}
+                                             +'-'+ ${#strings.substring(kurs.dataKursu,0,4)} + ' ' +${#strings.substring(kurs.dataKursu,11,13)}
                                              + ':' +${#strings.substring(kurs.dataKursu,14,16)} ">...</b> </td>
-                                    <td> <b  th:text="${kurs.miejscaPierwszaKlasa} - ${kurs.sprzedanePierwszaKlasa} ">...</b> </td>
+                                    <td> <b  th:text="${kurs.pociag.stacjaPoczatkowa} + ' - ' + ${kurs.pociag.stacjaKoncowa}">...</b> </td>
+                                    <td> <b  th:text="${kurs.miejscaPierwszaKlasa} - ${kurs.sprzedanePierwszaKlasa}">...</b> </td>
+                                    <td> <b th:text= ${#numbers.formatCurrency(kurs.pociag.cenaPierwszaKlasa)}>...</b></td>
                                     <td> <b  th:text="${kurs.miejscaDrugaKlasa} - ${kurs.sprzedaneDrugaKlasa}">...</b> </td>
-                                    <td> <b  th:text="${kurs.pociag.stacjaPoczatkowa}">...</b> </td>
-                                    <td> <b  th:text="${kurs.pociag.stacjaKoncowa}">...</b> </td>
+                                    <td> <b th:text= ${#numbers.formatCurrency(kurs.pociag.cenaDrugaKlasa)}>...</b></td>                            
                                     <td sec:authorize="!hasRole('ROLE_admin') and !hasRole('ROLE_maszynista')"> <a class="btn btn-primary " th:href="@{'/klient/zakup/' + ${kurs.idKursu}}">Kup</a></td>
                                 </tr>
                             </tbody>          
@@ -46,9 +48,7 @@
                     </div>    
                 </div>  
             </div>
-
         </div>
-
     </body>
 </html>
 
