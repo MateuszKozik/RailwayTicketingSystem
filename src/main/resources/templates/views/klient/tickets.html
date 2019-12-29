@@ -48,11 +48,11 @@
                                     </td>
                                     <td th:if="${bilet.klasa} == 1">
                                         <b th:if="${bilet.znizka}" th:text="${#numbers.formatCurrency((100 - bilet.znizka.procentZnizki) * bilet.kurs.pociag.cenaPierwszaKlasa / 100)}"></b>                                            
-                                        <b th:unless="${bilet.znizka}" th:text="${bilet.kurs.pociag.cenaPierwszaKlasa}"></b>
+                                        <b th:unless="${bilet.znizka}" th:text="${#numbers.formatCurrency(bilet.kurs.pociag.cenaPierwszaKlasa)}"></b>
                                     </td>
                                     <td th:if="${bilet.klasa} == 2">
                                         <b th:if="${bilet.znizka}" th:text="${#numbers.formatCurrency((100 - bilet.znizka.procentZnizki) * bilet.kurs.pociag.cenaDrugaKlasa / 100)}"></b>                                            
-                                        <b th:unless="${bilet.znizka}" th:text="${bilet.kurs.pociag.cenaDrugaKlasa}"></b>
+                                        <b th:unless="${bilet.znizka}" th:text="${#numbers.formatCurrency(bilet.kurs.pociag.cenaDrugaKlasa)}"></b>
                                     </td>
 
                                 </tr>
