@@ -44,6 +44,6 @@ public class ProfileController {
         }else{
            model.addAttribute("notBuy", true); 
         }    
-        return "/views/klient/profile";
+        return "/views/profile";
     }
 }
