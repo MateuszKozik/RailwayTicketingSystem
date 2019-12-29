@@ -31,22 +31,22 @@ public class KursService {
     
     public List<Kurs> findByStacjaPoczatkowa(String stacjaPoczatkowa){
          LocalDateTime date = LocalDateTime.now();
-         return kursRepository.findByPociagStacjaPoczatkowaAndDataKursuGreaterThan(stacjaPoczatkowa, date);
+         return kursRepository.findByPociagStacjaPoczatkowaAndDataKursuGreaterThanOrderByDataKursuAsc(stacjaPoczatkowa, date);
     }
     
     public List<Kurs> findByStacjaKoncowa(String stacjaKoncowa){
            LocalDateTime date = LocalDateTime.now();
-           return kursRepository.findByPociagStacjaKoncowaAndDataKursuGreaterThan(stacjaKoncowa, date);
+           return kursRepository.findByPociagStacjaKoncowaAndDataKursuGreaterThanOrderByDataKursuAsc(stacjaKoncowa, date);
     }
     
     public List<Kurs> findByStacje(String stacjaPoczatkowa, String StacjaKoncowa){
           LocalDateTime date = LocalDateTime.now();
-          return kursRepository.findByPociagStacjaPoczatkowaAndPociagStacjaKoncowaAndDataKursuGreaterThan(stacjaPoczatkowa, StacjaKoncowa, date);
+          return kursRepository.findByPociagStacjaPoczatkowaAndPociagStacjaKoncowaAndDataKursuGreaterThanOrderByDataKursuAsc(stacjaPoczatkowa, StacjaKoncowa, date);
     }
     
     public List<Kurs> findByDate(){
         LocalDateTime date = LocalDateTime.now();
-        return kursRepository.findByDataKursuGreaterThan(date);
+        return kursRepository.findByDataKursuGreaterThanOrderByDataKursuAsc(date);
     }
     
     public boolean fistClassAvaliable(Kurs kurs) {
