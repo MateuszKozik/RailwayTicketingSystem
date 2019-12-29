@@ -26,7 +26,7 @@
                                     <th>Wolne druga klasa</th>
                                     <th>Stacja początkowa</th>
                                     <th>Stacja końcowa</th>
-                                    <th sec:authorize="!hasRole('ROLE_admin')">Zakup</th>
+                                    <th sec:authorize="!hasRole('ROLE_admin') and !hasRole('ROLE_maszynista')">Zakup</th>
                                 </tr>
 
                             </thead>
@@ -39,7 +39,7 @@
                                     <td> <b  th:text="${kurs.miejscaDrugaKlasa} - ${kurs.sprzedaneDrugaKlasa}">...</b> </td>
                                     <td> <b  th:text="${kurs.pociag.stacjaPoczatkowa}">...</b> </td>
                                     <td> <b  th:text="${kurs.pociag.stacjaKoncowa}">...</b> </td>
-                                    <td sec:authorize="!hasRole('ROLE_admin')"> <a class="btn btn-primary " th:href="@{'/klient/zakup/' + ${kurs.idKursu}}">Kup</a></td>
+                                    <td sec:authorize="!hasRole('ROLE_admin') and !hasRole('ROLE_maszynista')"> <a class="btn btn-primary " th:href="@{'/klient/zakup/' + ${kurs.idKursu}}">Kup</a></td>
                                 </tr>
                             </tbody>          
                         </table>    
