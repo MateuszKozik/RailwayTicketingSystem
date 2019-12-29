@@ -45,7 +45,7 @@ public class ObslugaController {
         return "views/obsluga/courses";
     }
     
-       @RequestMapping(value = "/obsluga/edit", method = RequestMethod.GET)
+       @RequestMapping(value = "/obsluga/profile", method = RequestMethod.GET)
     public String edit(Model model, Principal principal) {
         String email = principal.getName();
         if (maszynistaService.isMaszynistaPresent(email)) {
@@ -58,17 +58,17 @@ public class ObslugaController {
                 Adres adres = adresService.getByMaszynista(maszynista.getIdMaszynisty());
                 model.addAttribute("adres", adres);
             }
-            return "/views/obsluga/edit";
+            return "/views/obsluga/profile";
         } else {
             Maszynista maszynista = new Maszynista();
             Adres adres = new Adres();
             model.addAttribute("maszynista", maszynista);
             model.addAttribute("adres", adres);
-            return "views/obsluga/edit";
+            return "views/obsluga/profile";
         }
     }
 
-    @RequestMapping(value = "/obsluga/edit", method = RequestMethod.POST)
+    @RequestMapping(value = "/obsluga/profile", method = RequestMethod.POST)
     public String edit(@ModelAttribute("maszynista") Maszynista maszynista,
             @ModelAttribute("adres") Adres adres, Principal principal) {
         String email = principal.getName();
@@ -77,6 +77,6 @@ public class ObslugaController {
         maszynista.setAdres(adres);
         maszynistaService.save(maszynista);
 
-        return "redirect:/obsluga/edit";
+        return "redirect:/obsluga/profile";
     }
 }

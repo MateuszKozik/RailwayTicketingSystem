@@ -38,7 +38,7 @@ public class KlientController {
     @Autowired
     private BiletService biletService;
 
-    @RequestMapping(value = "/klient/edit", method = RequestMethod.GET)
+    @RequestMapping(value = "/klient/profile", method = RequestMethod.GET)
     public String edit(Model model, Principal principal) {
         String email = principal.getName();
         if (pasazerService.isPasazerPresent(email)) {
@@ -51,17 +51,17 @@ public class KlientController {
                 Adres adres = adresService.getByPasazer(pasazer.getIdPasazera());
                 model.addAttribute("adres", adres);
             }
-            return "/views/klient/edit";
+            return "/views/klient/profile";
         } else {
             Pasazer pasazer = new Pasazer();
             Adres adres = new Adres();
             model.addAttribute("pasazer", pasazer);
             model.addAttribute("adres", adres);
-            return "views/klient/edit";
+            return "views/klient/profile";
         }
     }
 
-    @RequestMapping(value = "/klient/edit", method = RequestMethod.POST)
+    @RequestMapping(value = "/klient/profile", method = RequestMethod.POST)
     public String edit(@ModelAttribute("pasazer") Pasazer pasazer,
             @ModelAttribute("adres") Adres adres, Principal principal) {
         String email = principal.getName();
@@ -70,7 +70,7 @@ public class KlientController {
         pasazer.setAdres(adres);
         pasazerService.save(pasazer);
 
-        return "redirect:/klient/edit";
+        return "redirect:/klient/profile";
     }
 
     @RequestMapping(value = "/klient/zakup/{id}", method = RequestMethod.GET)

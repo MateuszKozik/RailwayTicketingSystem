@@ -19,7 +19,7 @@
                 </li>
 
                 <li class="nav-item" sec:authorize="hasRole('ROLE_admin') or hasRole('ROLE_maszynista') ">
-                    <a class="nav-link active" href="/obsluga/edit"> Profil </a>
+                    <a class="nav-link active" href="/obsluga/profile"> Profil </a>
                 </li>
 
                 <li class="nav-item" sec:authorize="hasRole('ROLE_admin')">
@@ -55,7 +55,7 @@
                 </li>
 
                 <li class="nav-item" sec:authorize="hasRole('ROLE_user') and !hasRole('ROLE_maszynista') and !hasRole('ROLE_admin')">
-                    <a class="nav-link active" href="/klient/edit"> Profil </a>
+                    <a class="nav-link active" href="/klient/profile"> Profil </a>
                 </li>
 
                 <li class="nav-item" sec:authorize="hasRole('ROLE_user') and !hasRole('ROLE_maszynista') and !hasRole('ROLE_admin')">
