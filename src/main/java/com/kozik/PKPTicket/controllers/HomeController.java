@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class ProfileController {
+public class HomeController {
     
     @Autowired PasazerService pasazerSerivce;
     @Autowired BiletService biletService;
     
-    @RequestMapping(value = "/profile",method = RequestMethod.GET)
+    @RequestMapping(value = "/home",method = RequestMethod.GET)
     public String showProfile(Principal principal, Model model){
         String email = principal.getName();
         if(pasazerSerivce.isPasazerPresent(email)){
@@ -44,6 +44,6 @@ public class ProfileController {
         }else{
            model.addAttribute("notBuy", true); 
         }    
-        return "/views/profile";
+        return "/views/home";
     }
 }
