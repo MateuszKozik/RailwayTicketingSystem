@@ -40,6 +40,7 @@ public class RegisterController {
         List<Uprawnienia> uprawnieniaList = new ArrayList<Uprawnienia>();
         uprawnieniaList.add(uprawnienia);
         uzytkownikService.save(uzytkownik, uprawnieniaList);
-        return "views/registerSuccess";
+        model.addAttribute("success", true);
+        return "views/register";
     }
 }
