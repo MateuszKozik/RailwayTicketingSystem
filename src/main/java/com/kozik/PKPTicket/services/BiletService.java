@@ -52,7 +52,7 @@ public class BiletService {
     }
     
     public List<Bilet> getByPasazer(Pasazer pasazer){
-        return biletRepository.findByPasazer(pasazer);
+        return biletRepository.findByPasazerOrderByDataZakupuDesc(pasazer);
     }
     
 }

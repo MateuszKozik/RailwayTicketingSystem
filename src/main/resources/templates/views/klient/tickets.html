@@ -17,12 +17,12 @@
             </div>
             <div class="row">
                 <div class="col-md-4 my-1">
-                    <input th:if="${not #lists.isEmpty(biletList)}" type="search"  placeholder="Szukaj..." class="form-control search-input border-primary" id="search"/>
+                    <input th:if="${biletList}" type="search"  placeholder="Szukaj..." class="form-control search-input border-primary" id="search"/>
                 </div>
             </div>
             <div class="row text-center">
                 <div class="col-md-12">
-                    <div th:if="${not #lists.isEmpty(biletList)}" class="table-responsive mt-2">
+                    <div th:if="${biletList}" class="table-responsive mt-2">
                         <table class="table">          
                             <thead>
                                 <tr class="active">

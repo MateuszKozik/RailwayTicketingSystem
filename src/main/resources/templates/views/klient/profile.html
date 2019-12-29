@@ -7,9 +7,63 @@
     </head>
     <body>       
         <div layout:fragment="content" class="container mt-2">
+            <div th:if="${empty}" class="row">
+                <div class="col-md-6 offset-md-3 text-center">
+                    <div class="alert alert-info alert-dismissible fade show" role="alert">
+                        Brak kursów na wybranej trasie!
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Zamknij">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div> 
+                </div>
+            </div>
             <div class="row">
-                <div class="col-md-4">
-                    <p th:text="'Witaj, ' + ${email}"></p>
+                <div class="col-md-6 text-center">
+                    <div class="jumbotron jumbotron-fluid">
+                        <div class="container">
+                            <h1 class="display-4">Wyszukiwarka kursów</h1>
+                            <form  class="input-group-lg" th:action="@{/kursy}" method="POST">
+                                <input class="form-control mb-2" type="text" name="stacjaPoczatkowa" placeholder="Stacja początkowa"/> 
+                                <input class="form-control" type="text" name="stacjaKoncowa" placeholder="Stacja końcowa"/> 
+                                <button class="btn btn-info my-2 btn-lg" type="submit" >Wyszukaj</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h1 class="display-4 text-center">Ostatnio zakupione</h1>
+                    <div class="row text-center">
+                        <div class="col-md-12" th:if="${notBuy}">
+                            <label class="h4">Nie masz jeszcze żadnego biletu!</label>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-12">
+                        <div th:if="${biletList}" class="table-responsive mt-2">
+                            <table class="table">          
+                                <thead>
+                                    <tr class="active"> 
+                                        <th>Data kursu</th>  
+                                        <th>Relacja</th>
+                                        <th>Klasa</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table">                       
+                                    <tr th:each ="bilet : ${biletList}">                                     
+                                        <td> <b  th:text="${#strings.substring(bilet.kurs.dataKursu,8,10)} + '-' +  ${#strings.substring(bilet.kurs.dataKursu,5,7)} 
+                                                 +'-'+ ${#strings.substring(bilet.kurs.dataKursu,0,4)}  + ' ' +${#strings.substring(bilet.kurs.dataKursu,11,13)}
+                                                 + ':' +${#strings.substring(bilet.kurs.dataKursu,14,16)} ">...</b> </td>      
+                                        <td> <b th:text="${bilet.kurs.pociag.stacjaPoczatkowa} + ' - ' + ${bilet.kurs.pociag.stacjaKoncowa} ">...</b></td>
+                                        <td>
+                                            <b th:if="${bilet.klasa} == 1"> Pierwsza</b>
+                                            <b th:unless="${bilet.klasa} == 1">Druga</b>
+                                        </td>
+                                    </tr>
+                                </tbody>          
+                            </table>    
+                        </div>    
+                    </div>  
                 </div>
             </div>
         </div>

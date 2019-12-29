@@ -123,14 +123,18 @@ public class KlientController {
     @RequestMapping(value = "/klient/tickets", method = RequestMethod.GET)
     public String tickets(Model model, Principal principal) {
         String email = principal.getName();
-        Pasazer pasazer = pasazerService.getByEmail(email);
-        List<Bilet> biletList = biletService.getByPasazer(pasazer);
-        if (biletList.isEmpty()) {
-            model.addAttribute("empty", true);
-            model.addAttribute("biletList", biletList);
-            return "/views/klient/tickets";
+        if (pasazerService.isPasazerPresent(email)) {
+            Pasazer pasazer = pasazerService.getByEmail(email);
+            List<Bilet> biletList = biletService.getByPasazer(pasazer);
+            if (biletList.isEmpty()) {
+                model.addAttribute("empty", true);
+                return "/views/klient/tickets";
+            } else {
+                model.addAttribute("biletList", biletList);
+                return "/views/klient/tickets";
+            }
         } else {
-            model.addAttribute("biletList", biletList);
+            model.addAttribute("empty", true);
             return "/views/klient/tickets";
         }
     }
