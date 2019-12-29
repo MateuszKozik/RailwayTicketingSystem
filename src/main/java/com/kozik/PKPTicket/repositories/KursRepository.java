@@ -1,6 +1,7 @@
 package com.kozik.PKPTicket.repositories;
 
 import com.kozik.PKPTicket.entities.Kurs;
+import com.kozik.PKPTicket.entities.Maszynista;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -13,4 +14,5 @@ public interface KursRepository extends JpaRepository<Kurs, Long> {
     List <Kurs> findByPociagStacjaPoczatkowaAndPociagStacjaKoncowaAndDataKursuGreaterThan(String stacjaPoczatkowa, String stacjaKoncowa, LocalDateTime dataKursu);
     List <Kurs> findByDataKursuGreaterThan(LocalDateTime dataKursu);
     long countByDataKursu(LocalDate dataKursu);
+    List<Kurs> findByPociagMaszynista(Maszynista maszynista);
 }

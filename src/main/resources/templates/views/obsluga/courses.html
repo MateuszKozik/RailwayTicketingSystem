@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/main_layout}">     
+    <head>
+        <script type="text/javascript" src="/js/search.js"></script>
+        <title>Lista przejazdów</title>               
+    </head>
+
+    <body>       
+        <div layout:fragment="content" class="container mt-2">
+            <div class="col-md-6 offset-md-3 text-center">
+                <div class="alert alert-info alert-dismissible fade show" th:if="${empty}" role="alert">
+                    Brak kursów do wyświetlenia!
+                </div> 
+            </div> 
+            <div th:if="${kursList}" class="table-responsive mt-2">
+                <table class="table table-bordered table-striped">          
+                    <thead class="thead-dark">
+                        <tr  class="active">
+                            <th>Data kursu</th>  
+                            <th>Relacja</th>  
+                        </tr>
+
+                    </thead>
+                    <tbody id="table">                       
+                        <tr th:each ="kurs : ${kursList}">                                     
+                            <td> <b  th:text="${#strings.substring(kurs.dataKursu,8,10)} + '-' +  ${#strings.substring(kurs.dataKursu,5,7)} 
+                                     +'-'+ ${#strings.substring(kurs.dataKursu,0,4)}  + ' ' +${#strings.substring(kurs.dataKursu,11,13)}
+                                     + ':' +${#strings.substring(kurs.dataKursu,14,16)} ">...</b> </td>
+                            <td> <b  th:text="${kurs.pociag.StacjaPoczatkowa} + ' - ' + ${kurs.pociag.StacjaKoncowa}" >...</b> </td>                                       
+                        </tr>
+                    </tbody>          
+                </table>    
+            </div>    
+        </div>
+    </body>
+</html>
+

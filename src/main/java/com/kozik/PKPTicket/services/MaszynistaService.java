@@ -8,8 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MaszynistaService {
-    @Autowired 
-    private MaszynistaRepository maszynistaRepository;
+    @Autowired private MaszynistaRepository maszynistaRepository;
     
     public List<Maszynista> listAll(){
         return maszynistaRepository.findAll();
@@ -26,4 +25,12 @@ public class MaszynistaService {
     public void delete(Long id){
         maszynistaRepository.deleteById(id);
     } 
+
+    public boolean isMaszynistaPresent(String email) {
+        return maszynistaRepository.existsByUzytkownikEmail(email);
+    }
+
+    public Maszynista getByEmail(String email) {
+        return maszynistaRepository.findByUzytkownikEmail(email);
+    }
 }

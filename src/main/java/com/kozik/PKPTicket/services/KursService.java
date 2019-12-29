@@ -1,6 +1,7 @@
 package com.kozik.PKPTicket.services;
 
 import com.kozik.PKPTicket.entities.Kurs;
+import com.kozik.PKPTicket.entities.Maszynista;
 import com.kozik.PKPTicket.repositories.KursRepository;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -64,5 +65,9 @@ public class KursService {
         } else {
             return false;
         }
+    }
+    
+    public List<Kurs> getByMaszynista(Maszynista maszynista){
+        return kursRepository.findByPociagMaszynista(maszynista);
     }
 }
