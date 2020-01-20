@@ -9,6 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "adres")
@@ -20,18 +24,25 @@ public class Adres {
     private Long idAdresu;
 
     @Column(name = "ulica", nullable = false)
+    @NotEmpty
     private String ulica;
 
     @Column(name = "numer_domu", nullable = false)
+    @NotNull
+    @Min(1)
     private Integer numerDomu;
 
     @Column(name = "numer_mieszkania", nullable = true)
+    @Min(1)
     private Integer numerMieszkania;
 
     @Column(name = "kod_pocztowy", nullable = false)
+    @NotEmpty
+    @Pattern(regexp = "\\d{2}-\\d{3}")
     private String kodPocztowy;
 
     @Column(name = "miejscowosc", nullable = false)
+    @NotEmpty
     private String miejscowosc;
     
     @OneToMany(mappedBy = "adres")

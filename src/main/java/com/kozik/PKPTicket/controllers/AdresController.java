@@ -3,9 +3,11 @@ package com.kozik.PKPTicket.controllers;
 import com.kozik.PKPTicket.entities.Adres;
 import com.kozik.PKPTicket.services.AdresService;
 import java.util.List;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,7 +34,7 @@ public class AdresController {
     }
     
     @RequestMapping(value = "/adres/add", method = RequestMethod.POST)
-    public String save(@ModelAttribute("adres") Adres adres){
+    public String save(@Valid Adres adres, BindingResult bindingResult){
         adresService.save(adres);
         return "redirect:/adres/list";
     }
