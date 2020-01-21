@@ -29,11 +29,9 @@ public class Adres {
 
     @Column(name = "numer_domu", nullable = false)
     @NotNull
-    @Min(1)
     private Integer numerDomu;
 
     @Column(name = "numer_mieszkania", nullable = true)
-    @Min(1)
     private Integer numerMieszkania;
 
     @Column(name = "kod_pocztowy", nullable = false)

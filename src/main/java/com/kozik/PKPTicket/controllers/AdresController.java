@@ -35,6 +35,9 @@ public class AdresController {
     
     @RequestMapping(value = "/adres/add", method = RequestMethod.POST)
     public String save(@Valid Adres adres, BindingResult bindingResult){
+         if(bindingResult.hasErrors()){
+              return "views/adres/add"; 
+        }
         adresService.save(adres);
         return "redirect:/adres/list";
     }
