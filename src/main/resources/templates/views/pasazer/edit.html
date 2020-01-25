@@ -12,7 +12,8 @@
                     <div class="col-md-4 offset-md-4 text-center">                         
                         <div class="form-group">  
                             <label> Imię </label>
-                            <input class=form-control type="text" th:field="${pasazer.imie}" required/>           
+                            <input class=form-control type="text" id="imie" th:field="${pasazer.imie}" required/>           
+                            <div class="text text-danger" th:if="${#fields.hasErrors('imie')}" th:errors="${pasazer.imie}"></div>
                         </div>    
                     </div>
                 </div>
@@ -21,7 +22,8 @@
                     <div class="col-md-4 offset-md-4 text-center">  
                         <div class="form-group">    
                             <label> Nazwisko </label>
-                            <input class=form-control type="text" th:field="${pasazer.nazwisko}" required/>          
+                            <input class=form-control type="text" id="nazwisko" th:field="${pasazer.nazwisko}" required/>          
+                            <div class="text text-danger" th:if="${#fields.hasErrors('nazwisko')}" th:errors="${pasazer.nazwisko}"></div>
                         </div>  
                     </div>
                 </div>
@@ -30,7 +32,8 @@
                     <div class="col-md-4 offset-md-4 text-center">  
                         <div class="form-group">    
                             <label> Pesel </label>
-                            <input class=form-control type="number" th:field="${pasazer.pesel}" required/>            
+                            <input class=form-control type="text" id="pesel" th:field="${pasazer.pesel}" required/> 
+                            <div class="text text-danger" th:if="${#fields.hasErrors('pesel')}" th:errors="${pasazer.pesel}"></div>           
                         </div> 
                     </div>
                 </div>

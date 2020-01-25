@@ -7,9 +7,14 @@ import com.kozik.PKPTicket.services.PasazerService;
 import com.kozik.PKPTicket.services.AdresService;
 import com.kozik.PKPTicket.services.UzytkownikService;
 import java.util.List;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.bind.BindResult;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,9 +48,12 @@ public class PasazerController {
     }
     
     @RequestMapping(value = "/pasazer/add", method = RequestMethod.POST)
-    public String add(@ModelAttribute("pasazer") Pasazer pasazer,
+    public String add(@Valid Pasazer pasazer, BindingResult bindingResult,
             @RequestParam(name = "adres")Adres adres,
             @RequestParam(name = "uzytkownik") Uzytkownik uzytkownik){
+                if(bindingResult.hasErrors()){
+                    return "views/pasazer/add";
+                }
         pasazer.setAdres(adres);
         pasazer.setUzytkownik(uzytkownik);
         pasazerService.save(pasazer);
@@ -64,9 +72,13 @@ public class PasazerController {
     }
     
      @RequestMapping(value = "/pasazer/edit/{id}", method = RequestMethod.POST)
-    public String edit(@PathVariable(name = "id") long id, @ModelAttribute("pasazer") Pasazer pasazer,
+    public String edit(@PathVariable(name = "id") long id,
+     @Valid Pasazer pasazer, BindingResult bindingResult,
             @RequestParam(name = "adres")Adres adres,
             @RequestParam(name = "uzytkownik") Uzytkownik uzytkownik){ 
+                if(bindingResult.hasErrors()){
+                    return "views/pasazer/edit";
+                }
         pasazer.setIdPasazera(id);
         pasazer.setAdres(adres);
         pasazer.setUzytkownik(uzytkownik);

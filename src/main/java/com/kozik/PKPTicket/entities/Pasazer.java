@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "pasazer")
@@ -23,12 +25,16 @@ public class Pasazer {
     @Column(name = "id_pasazera", nullable = false)
     private Long idPasazera;
 
+    @NotEmpty
     @Column(name = "imie", nullable = false)
     private String imie;
 
+    @NotEmpty
     @Column(name = "nazwisko", nullable = false)
     private String nazwisko;
 
+    @NotEmpty
+    @Pattern(regexp = "^\\d{11}$")
     @Column(name = "pesel", nullable = false)
     private String pesel;
 
