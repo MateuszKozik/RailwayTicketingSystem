@@ -13,6 +13,7 @@
                         <div class="form-group">                                          
                             <label> Ulica </label>
                             <input class=form-control type="text" th:field="${adres.ulica}" required/>           
+                            <div class="text text-danger" th:if="${#fields.hasErrors('ulica')}" th:errors="${adres.ulica}"></div>
                         </div>    
                     </div>
                 </div>
@@ -22,6 +23,7 @@
                         <div class="form-group">    
                             <label> Numer domu </label>
                             <input class=form-control type="number" min="1" th:field="${adres.numerDomu}" required/>          
+                            <div class="text text-danger" th:if="${#fields.hasErrors('numerDomu')}" th:errors="${adres.numerDomu}"></div>
                         </div>  
                     </div>
                 </div>
@@ -31,6 +33,7 @@
                         <div class="form-group">    
                             <label> Numer mieszkania </label>
                             <input class=form-control type="number" min="1" th:field="${adres.numerMieszkania}" placeholder="Opcjonalne"/>            
+                            <div class="text text-danger" th:if="${#fields.hasErrors('numerMieszkania')}" th:errors="${adres.numerMieszkania}"></div>
                         </div> 
                     </div>
                 </div>
@@ -40,6 +43,7 @@
                         <div class="form-group">    
                             <label> Kod pocztowy </label>
                             <input class=form-control type="text" th:field="${adres.kodPocztowy}" required/>            
+                            <div class="text text-danger" th:if="${#fields.hasErrors('kodPocztowy')}" th:errors="${adres.kodPocztowy}"></div>
                         </div> 
                     </div>
                 </div>
@@ -49,6 +53,7 @@
                         <div class="form-group">    
                             <label> Miejscowość </label>
                             <input class=form-control type="text" th:field="${adres.miejscowosc}" required/>            
+                            <div class="text text-danger" th:if="${#fields.hasErrors('miejscowosc')}" th:errors="${adres.miejscowosc}"></div>
                         </div> 
                     </div>
                 </div>
