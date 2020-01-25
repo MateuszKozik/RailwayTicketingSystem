@@ -5,9 +5,13 @@ import com.kozik.PKPTicket.entities.Maszynista;
 import com.kozik.PKPTicket.services.MaszynistaService;
 import com.kozik.PKPTicket.services.PociagService;
 import java.util.List;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,8 +41,11 @@ public class PociagController {
     }
     
     @RequestMapping(value = "/pociag/add", method = RequestMethod.POST)
-    public String add(@ModelAttribute("pociag") Pociag pociag,
+    public String add(@Valid Pociag pociag, BindingResult bindingResult,
             @RequestParam("maszynista") Maszynista maszynista){
+                if(bindingResult.hasErrors()){
+                    return "views/pociag/add";
+                }
         pociag.setMaszynista(maszynista);
         pociagService.save(pociag);
         return "redirect:/pociag/list";
@@ -55,8 +62,11 @@ public class PociagController {
     
     @RequestMapping(value = "/pociag/edit/{id}", method = RequestMethod.POST)
     public String edit(@PathVariable(name = "id") long id,
-            @ModelAttribute("pociag") Pociag pociag,
+            @Valid Pociag pociag, BindingResult bindingResult,
             @RequestParam("maszynista") Maszynista maszynista){
+                if(bindingResult.hasErrors()){
+                    return "views/pociag/edit";
+                }
         pociag.setIdPociagu(id);
         pociag.setMaszynista(maszynista);
         pociagService.save(pociag);

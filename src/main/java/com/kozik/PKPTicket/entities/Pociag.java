@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "pociag")
@@ -24,9 +25,11 @@ public class Pociag {
     @Column(name = "nazwa", nullable = true)
     private String nazwa;
 
+    @NotEmpty
     @Column(name = "stacja_poczatkowa", nullable = false)
     private String stacjaPoczatkowa;
 
+    @NotEmpty
     @Column(name = "stacja_koncowa", nullable = false)
     private String stacjaKoncowa;
 

@@ -20,7 +20,8 @@
                     <div class="col-md-4 offset-md-4 text-center">  
                         <div class="form-group">    
                             <label> Stacja początkowa </label>
-                            <input class=form-control type="text" th:field="${pociag.stacjaPoczatkowa}" required/>          
+                            <input class=form-control type="text" id="stacjaPoczatkowa" th:field="${pociag.stacjaPoczatkowa}" required/>                                 
+                            <div class="text text-danger" th:if="${#fields.hasErrors('stacjaPoczatkowa')}" th:errors="${pociag.stacjaPoczatkowa}"></div>
                         </div>  
                     </div>
                 </div>
@@ -29,7 +30,8 @@
                     <div class="col-md-4 offset-md-4 text-center">  
                         <div class="form-group">    
                             <label> Stacja końcowa </label>
-                            <input class=form-control type="text" th:field="${pociag.stacjaKoncowa}"/>            
+                            <input class=form-control type="text" id="stacjaKoncowa" th:field="${pociag.stacjaKoncowa}" required/>            
+                            <div class="text text-danger" th:if="${#fields.hasErrors('stacjaKoncowa')}" th:errors="${pociag.stacjaKoncowa}"></div>
                         </div> 
                     </div>
                 </div>
