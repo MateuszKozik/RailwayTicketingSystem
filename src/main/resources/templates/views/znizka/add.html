@@ -12,7 +12,8 @@
                     <div class="col-md-4 offset-md-4 text-center">                         
                         <div class="form-group">    
                             <label> Opis </label>
-                            <input class=form-control type="text" th:field="${znizka.opis}" required/>           
+                            <input class=form-control type="text" id="opis" th:field="${znizka.opis}" required/> 
+                            <div class="text text-danger" th:if="${#fields.hasErrors('opis')}" th:errors="${znizka.opis}"></div>                    
                         </div>    
                     </div>
                 </div>

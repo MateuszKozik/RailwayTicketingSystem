@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "znizka")
@@ -19,6 +20,7 @@ public class Znizka {
     @Column(name = "id_znizki", nullable = false)
     private Long idZnizki;
     
+    @NotEmpty
     @Column(name = "opis", nullable = false)
     private String opis;
     

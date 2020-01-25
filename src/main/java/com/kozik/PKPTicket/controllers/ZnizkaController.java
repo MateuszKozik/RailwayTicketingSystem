@@ -3,9 +3,13 @@ package com.kozik.PKPTicket.controllers;
 import com.kozik.PKPTicket.entities.Znizka;
 import com.kozik.PKPTicket.services.ZnizkaService;
 import java.util.List;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,7 +36,10 @@ public class ZnizkaController {
     }
     
     @RequestMapping(value = "znizka/add", method = RequestMethod.POST)
-    public String save(@ModelAttribute("znizka") Znizka znizka){
+    public String save(@Valid Znizka znizka, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            return "views/znizka/add";
+        }
         znizkaService.save(znizka);
         return "redirect:/znizka/list";
     }
@@ -45,7 +52,11 @@ public class ZnizkaController {
     }
     
     @RequestMapping(value = "/znizka/edit/{id}", method = RequestMethod.POST)
-    public String edit(@PathVariable(name = "id") long id, @ModelAttribute("pasazer") Znizka znizka){ 
+    public String edit(@PathVariable(name = "id") long id, 
+    @Valid Znizka znizka, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            return "views/znizka/edit";
+        } 
         znizka.setIdZnizki(id);
         znizkaService.save(znizka);
         return "redirect:/znizka/list";
