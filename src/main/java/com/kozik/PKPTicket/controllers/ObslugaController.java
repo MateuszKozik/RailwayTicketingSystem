@@ -5,7 +5,6 @@ import com.kozik.PKPTicket.services.KursService;
 import com.kozik.PKPTicket.services.UzytkownikService;
 import com.kozik.PKPTicket.entities.Maszynista;
 import com.kozik.PKPTicket.entities.Kurs;
-import com.kozik.PKPTicket.entities.Adres;
 import com.kozik.PKPTicket.services.AdresService;
 import com.kozik.PKPTicket.services.MaszynistaService;
 import java.security.Principal;

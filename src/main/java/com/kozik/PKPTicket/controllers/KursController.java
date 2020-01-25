@@ -4,8 +4,6 @@ import com.kozik.PKPTicket.entities.Kurs;
 import com.kozik.PKPTicket.entities.Pociag;
 import com.kozik.PKPTicket.services.KursService;
 import com.kozik.PKPTicket.services.PociagService;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
