@@ -13,9 +13,13 @@ import com.kozik.PKPTicket.entities.Kurs;
 import com.kozik.PKPTicket.entities.Znizka;
 import java.security.Principal;
 import java.util.List;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -62,8 +66,14 @@ public class KlientController {
     }
 
     @RequestMapping(value = "/klient/profile", method = RequestMethod.POST)
-    public String edit(@ModelAttribute("pasazer") Pasazer pasazer,
-            @ModelAttribute("adres") Adres adres, Principal principal) {
+    public String edit(@Valid Pasazer pasazer,BindingResult bindingResult,
+            @Valid Adres adres, BindingResult bindingResult2, Principal principal) {
+                if(bindingResult.hasErrors()){
+                    return "views/klient/profile";
+                }
+                if(bindingResult2.hasErrors()){
+                    return "views/klient/profile";
+                }
         String email = principal.getName();
         pasazer.setUzytkownik(uzytkownikService.get(email));
         adresService.save(adres);

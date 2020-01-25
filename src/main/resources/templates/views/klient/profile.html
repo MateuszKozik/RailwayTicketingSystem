@@ -9,13 +9,14 @@
         <div layout:fragment="content" class="container mt-2">
             <form th:action="@{/klient/profile}" method="POST">
                 <div class="row">        
-                    <div class="col-md-4 offset-md-1 text-center">                         
+                    <div class="col-md-4 offset-md-1 text-center" th:object="${pasazer}">                         
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">    
                                     <label> Imię </label>
                                     <input class=form-control type="text" th:field="${pasazer.idPasazera}" hidden readonly required/>     
-                                    <input class=form-control type="text" th:field="${pasazer.imie}" required/>           
+                                    <input class=form-control type="text" id="imie" th:field="${pasazer.imie}" required/>  
+                                    <div class="text text-danger" th:if="${#fields.hasErrors('imie')}" th:errors="${pasazer.imie}"></div>              
                                 </div>
                             </div>
                         </div>  
@@ -24,7 +25,8 @@
                             <div class="col-md-12">
                                 <div class="form-group">    
                                     <label> Nazwisko </label>
-                                    <input class=form-control type="text" th:field="${pasazer.nazwisko}" required/>          
+                                    <input class=form-control type="text" id="nazwisko" th:field="${pasazer.nazwisko}" required/>
+                                    <div class="text text-danger" th:if="${#fields.hasErrors('nazwisko')}" th:errors="${pasazer.nazwisko}"></div>           
                                 </div>  
                             </div>
                         </div>
@@ -33,19 +35,21 @@
                             <div class="col-md-12">  
                                 <div class="form-group">    
                                     <label> Pesel </label>
-                                    <input class=form-control type="number" th:field="${pasazer.pesel}" required/>            
+                                    <input class=form-control type="number" id="pesel" th:field="${pasazer.pesel}" required/> 
+                                    <div class="text text-danger" th:if="${#fields.hasErrors('pesel')}" th:errors="${pasazer.pesel}"></div>            
                                 </div> 
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-md-4 offset-md-2 text-center"> 
+                    <div class="col-md-4 offset-md-2 text-center" th:object="${adres}"> 
                         <div class="row">                 
                             <div class="col-md-12">                         
                                 <div class="form-group">   
                                     <label> Ulica </label>
                                     <input class="form-control" type="text" th:field="${adres.idAdresu}" hidden readonly required/>
-                                    <input class="form-control" type="text" th:field="${adres.ulica}" required/>        
+                                    <input class="form-control" type="text" id="ulica" th:field="${adres.ulica}" required/> 
+                                    <div class="text text-danger" th:if="${#fields.hasErrors('ulica')}" th:errors="${adres.ulica}"></div>        
                                 </div>    
                             </div>    
                         </div>
@@ -70,13 +74,15 @@
                             <div class="col-md-6">  
                                 <div class="form-group">    
                                     <label> Kod pocztowy </label>
-                                    <input class=form-control type="text" th:field="${adres.kodPocztowy}" required/>            
+                                    <input class=form-control type="text" id="kodPocztowy" th:field="${adres.kodPocztowy}" required/>  
+                                    <div class="text text-danger" th:if="${#fields.hasErrors('kodPocztowy')}" th:errors="${adres.kodPocztowy}"></div>            
                                 </div> 
                             </div>
                             <div class="col-md-6">  
                                 <div class="form-group">    
                                     <label> Miejscowość </label>
-                                    <input class=form-control type="text" th:field="${adres.miejscowosc}" required/>            
+                                    <input class=form-control type="text" th:field="${adres.miejscowosc}" required/>
+                                    <div class="text text-danger" th:if="${#fields.hasErrors('miejscowosc')}" th:errors="${adres.miejscowosc}"></div>              
                                 </div> 
                             </div>
                         </div>
