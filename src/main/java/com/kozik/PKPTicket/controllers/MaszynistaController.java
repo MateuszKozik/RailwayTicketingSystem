@@ -7,9 +7,13 @@ import com.kozik.PKPTicket.services.AdresService;
 import com.kozik.PKPTicket.services.MaszynistaService;
 import com.kozik.PKPTicket.services.UzytkownikService;
 import java.util.List;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,9 +45,12 @@ public class MaszynistaController {
     }
     
     @RequestMapping(value = "/maszynista/add", method = RequestMethod.POST)
-    public String save(@ModelAttribute("maszynista") Maszynista maszynista,
+    public String save(@Valid Maszynista maszynista,BindingResult bindingResult,
             @RequestParam(name = "adres")Adres adres,
             @RequestParam(name = "uzytkownik") Uzytkownik uzytkownik){
+        if(bindingResult.hasErrors()){
+            return "views/maszynista/add";
+        }
         maszynista.setUzytkownik(uzytkownik);
         maszynista.setAdres(adres);
         maszynistaService.save(maszynista);
@@ -63,9 +70,12 @@ public class MaszynistaController {
     
     @RequestMapping(value = "/maszynista/edit/{id}", method = RequestMethod.POST)
     public String edit(@PathVariable(name = "id") long id,
-            @ModelAttribute("maszynista") Maszynista maszynista,
+            @Valid Maszynista maszynista, BindingResult bindingResult,
             @RequestParam(name = "adres")Adres adres,  
             @RequestParam(name = "uzytkownik") Uzytkownik uzytkownik){ 
+                if(bindingResult.hasErrors()){
+                    return "views/maszynista/edit";
+                }
         maszynista.setIdMaszynisty(id);
         maszynista.setAdres(adres);
         maszynista.setUzytkownik(uzytkownik);
