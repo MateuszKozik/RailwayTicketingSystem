@@ -6,9 +6,13 @@ import com.kozik.PKPTicket.services.UprawnieniaService;
 import com.kozik.PKPTicket.services.UzytkownikService;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,8 +42,11 @@ public class UzytkownikController {
     }
     
     @RequestMapping(value = "/uzytkownik/add", method = RequestMethod.POST)
-    public String add(@ModelAttribute("uzytkownik") Uzytkownik uzytkownik,
+    public String add(@Valid Uzytkownik uzytkownik, BindingResult bindingResult,
             @RequestParam(name = "uprawnienia", required = false) ArrayList<Uprawnienia>uprawnieniaList){ 
+                if(bindingResult.hasErrors()){
+                    return "views/uzytkownik/add";
+                }
         uzytkownikService.save(uzytkownik, uprawnieniaList);
         return "redirect:/uzytkownik/list";
     }
@@ -55,8 +62,11 @@ public class UzytkownikController {
     
     @RequestMapping(value = "/uzytkownik/edit/{email}", method = RequestMethod.POST)
     public String edit(@PathVariable(name = "email") String email,
-            @ModelAttribute("uzytkownik") Uzytkownik uzytkownik,
+            @Valid Uzytkownik uzytkownik, BindingResult bindingResult,
             @RequestParam(name = "uprawnienia", required = false) ArrayList<Uprawnienia>uprawnieniaList){
+                if(bindingResult.hasErrors()){
+                    return "views/uzytkownik/edit";
+                }
         uzytkownik.setEmail(email);
         uzytkownikService.save(uzytkownik, uprawnieniaList);
         return "redirect:/uzytkownik/list";

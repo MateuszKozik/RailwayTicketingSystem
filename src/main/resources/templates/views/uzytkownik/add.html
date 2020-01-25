@@ -12,7 +12,8 @@
                     <div class="col-md-4 offset-md-4 text-center">                         
                         <div class="form-group">    
                             <label> E-mail: </label>
-                            <input class=form-control type="text" th:field="${uzytkownik.email}" required/>           
+                            <input class=form-control type="text" id="email" th:field="${uzytkownik.email}" required/> 
+                            <div class="text text-danger" th:if="${#fields.hasErrors('email')}" th:errors="${uzytkownik.email}"></div>          
                         </div>    
                     </div>
                 </div>
@@ -21,7 +22,8 @@
                     <div class="col-md-4 offset-md-4 text-center">  
                         <div class="form-group">    
                             <label> Hasło: </label>
-                            <input class=form-control type="password" th:field="${uzytkownik.haslo}" required/>          
+                            <input class=form-control type="password" id="haslo" th:field="${uzytkownik.haslo}" required/>          
+                            <div class="text text-danger" th:if="${#fields.hasErrors('haslo')}" th:errors="${uzytkownik.haslo}"></div>          
                         </div>  
                     </div>
                 </div>
