@@ -9,9 +9,13 @@ import com.kozik.PKPTicket.services.AdresService;
 import com.kozik.PKPTicket.services.MaszynistaService;
 import java.security.Principal;
 import java.util.List;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -68,8 +72,15 @@ public class ObslugaController {
     }
 
     @RequestMapping(value = "/obsluga/profile", method = RequestMethod.POST)
-    public String edit(@ModelAttribute("maszynista") Maszynista maszynista,
-            @ModelAttribute("adres") Adres adres, Principal principal) {
+    public String edit(@Valid Maszynista maszynista, BindingResult bindingResult2,
+            @Valid Adres adres, BindingResult bindingResult,
+             Principal principal) {
+                 if(bindingResult2.hasErrors()){
+                     return "views/obsluga/profile";
+                 }
+                 if(bindingResult.hasErrors()){
+                     return "views/obsluga/profile";
+                 }
         String email = principal.getName();
         maszynista.setUzytkownik(uzytkownikService.get(email));
         adresService.save(adres);
