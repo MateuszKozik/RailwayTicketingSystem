@@ -13,6 +13,7 @@ import com.kozik.PKPTicket.services.PociagService;
 import com.kozik.PKPTicket.utilities.ListaBiletowPDF;
 import com.kozik.PKPTicket.utilities.ListaMaszynistowPDF;
 import com.kozik.PKPTicket.utilities.ListaPasazerowPDF;
+import com.kozik.PKPTicket.utilities.ListaPociagowPDF;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
@@ -72,4 +73,16 @@ public class RaportController{
 				.body(new InputStreamResource(bis));
     }
 
+    @RequestMapping(value="/raport/trains", method=RequestMethod.GET)
+    public ResponseEntity<InputStreamResource> trainsReport() throws IOException {
+
+        List<Pociag> pociagList = pociagService.listAll();
+		ByteArrayInputStream bis = ListaPociagowPDF.trainsReport(pociagList);
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-Disposition", "inline; filename=listaPociagow.pdf");
+
+		return ResponseEntity.ok().headers(headers).contentType(MediaType.APPLICATION_PDF)
+				.body(new InputStreamResource(bis));
+    }
 }
