@@ -60,10 +60,10 @@ public class RaportController{
     }
 
     @RequestMapping(value="/raport/trainDrivers", method=RequestMethod.GET)
-    public ResponseEntity<InputStreamResource> trainsReport() throws IOException {
+    public ResponseEntity<InputStreamResource> trainDriversReport() throws IOException {
 
         List<Pociag> pociagList = pociagService.listAll();
-		ByteArrayInputStream bis = ListaMaszynistowPDF.trainsReport(pociagList);
+		ByteArrayInputStream bis = ListaMaszynistowPDF.trainDriversReport(pociagList);
 
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Content-Disposition", "inline; filename=listaMaszynistow.pdf");

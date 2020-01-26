@@ -19,7 +19,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 import com.kozik.PKPTicket.entities.Pociag;
 
 public class ListaMaszynistowPDF{
-    public static ByteArrayInputStream trainsReport(List<Pociag> pociagList) throws IOException {
+    public static ByteArrayInputStream trainDriversReport(List<Pociag> pociagList) throws IOException {
 
 		Document document = new Document();
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
