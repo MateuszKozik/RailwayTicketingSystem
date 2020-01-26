@@ -69,6 +69,17 @@
                 <li class="nav-item" sec:authorize="hasRole('ROLE_maszynista')">
                     <a class="nav-link active" href="/obsluga/courses"> Obsługa </a>
                 </li> 
+
+                <li class="nav-item dropdown" sec:authorize="hasRole('ROLE_maszynista')">
+                    <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Raporty
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="/raport/lastMonth">Bilety</a>
+                      <a class="dropdown-item" href="/raport/trainDrivers">Maszyniści</a>
+                      <a class="dropdown-item" href="/raport/trains">Pociągi</a>
+                    </div>
+                  </li>
             </ul>
 
             <form class="form-inline" sec:authorize="!isAuthenticated()">
