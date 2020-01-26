@@ -6,9 +6,12 @@ import java.util.List;
 
 import com.kozik.PKPTicket.entities.Bilet;
 import com.kozik.PKPTicket.entities.Kurs;
+import com.kozik.PKPTicket.entities.Pociag;
 import com.kozik.PKPTicket.services.BiletService;
 import com.kozik.PKPTicket.services.KursService;
+import com.kozik.PKPTicket.services.PociagService;
 import com.kozik.PKPTicket.utilities.ListaBiletowPDF;
+import com.kozik.PKPTicket.utilities.ListaMaszynistowPDF;
 import com.kozik.PKPTicket.utilities.ListaPasazerowPDF;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +30,8 @@ public class RaportController{
     private BiletService biletService;
     @Autowired
     private KursService kursService;
+    @Autowired
+    private PociagService pociagService;
 
     @RequestMapping(value="/raport/lastMonth", method=RequestMethod.GET)
     public ResponseEntity<InputStreamResource> ticketsReport() throws IOException {
@@ -48,7 +53,20 @@ public class RaportController{
 		ByteArrayInputStream bis = ListaPasazerowPDF.passengersReport(biletList);
 
 		HttpHeaders headers = new HttpHeaders();
-		headers.add("Content-Disposition", "inline; filename=listaBiletow.pdf");
+		headers.add("Content-Disposition", "inline; filename=listaPasazerow.pdf");
+
+		return ResponseEntity.ok().headers(headers).contentType(MediaType.APPLICATION_PDF)
+				.body(new InputStreamResource(bis));
+    }
+
+    @RequestMapping(value="/raport/trainDrivers", method=RequestMethod.GET)
+    public ResponseEntity<InputStreamResource> trainsReport() throws IOException {
+
+        List<Pociag> pociagList = pociagService.listAll();
+		ByteArrayInputStream bis = ListaMaszynistowPDF.trainsReport(pociagList);
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-Disposition", "inline; filename=listaMaszynistow.pdf");
 
 		return ResponseEntity.ok().headers(headers).contentType(MediaType.APPLICATION_PDF)
 				.body(new InputStreamResource(bis));
