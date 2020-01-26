@@ -82,7 +82,7 @@ public class ListaBiletowPDF {
 
 			PdfWriter.getInstance(document, out);
             document.open();
-            Paragraph header = new Paragraph("Bilety zakupione w ostatnim miesiącu",headFont);
+            Paragraph header = new Paragraph("Bilety sprzedane w ostatnim miesiącu",headFont);
             header.setAlignment(Element.ALIGN_CENTER);
             document.add(header);
             document.add(Chunk.NEWLINE);

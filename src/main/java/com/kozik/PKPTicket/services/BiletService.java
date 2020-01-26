@@ -4,6 +4,8 @@ import com.kozik.PKPTicket.entities.Bilet;
 import com.kozik.PKPTicket.entities.Kurs;
 import com.kozik.PKPTicket.entities.Pasazer;
 import com.kozik.PKPTicket.repositories.BiletRepository;
+
+import java.time.LocalDateTime;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,4 +57,9 @@ public class BiletService {
         return biletRepository.findByPasazerOrderByDataZakupuDesc(pasazer);
     }
     
+    public List<Bilet> getLastMonth(){
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime earlier = now.minusMonths(1);
+        return biletRepository.findByDataZakupuAfter(earlier);
+    }
 }
