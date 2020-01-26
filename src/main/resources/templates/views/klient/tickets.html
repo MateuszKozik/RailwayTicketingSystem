@@ -15,11 +15,15 @@
                     </div> 
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-4 my-1">
+            <div class="row my-1">
+                <div class="col-md-4">
                     <input th:if="${biletList}" type="search"  placeholder="Szukaj..." class="form-control search-input border-primary" id="search"/>
                 </div>
+                <div class="col-md-4">
+                    <a class="btn btn-primary my-1" href="/raport/customerTickets"> Historia zakupów</a>
+                </div>
             </div>
+            
             <div class="row text-center">
                 <div class="col-md-12">
                     <div th:if="${biletList}" class="table-responsive mt-2">

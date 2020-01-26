@@ -100,7 +100,7 @@ public class RaportController{
 		ByteArrayInputStream bis = BiletyKlientaPDF.customerTickets(biletList);
 
 		HttpHeaders headers = new HttpHeaders();
-		headers.add("Content-Disposition", "inline; filename=listaPociagow.pdf");
+		headers.add("Content-Disposition", "inline; filename=listaBiletów.pdf");
 
 		return ResponseEntity.ok().headers(headers).contentType(MediaType.APPLICATION_PDF)
 				.body(new InputStreamResource(bis));
