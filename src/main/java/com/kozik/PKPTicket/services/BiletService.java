@@ -62,4 +62,8 @@ public class BiletService {
         LocalDateTime earlier = now.minusMonths(1);
         return biletRepository.findByDataZakupuAfter(earlier);
     }
+
+    public List<Bilet> getbyKurs(Kurs kurs){
+        return biletRepository.findByKurs(kurs);
+    }
 }

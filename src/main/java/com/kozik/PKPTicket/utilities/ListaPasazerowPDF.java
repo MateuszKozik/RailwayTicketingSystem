@@ -18,7 +18,7 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.kozik.PKPTicket.entities.Bilet;
 public class ListaPasazerowPDF{
-    public static ByteArrayInputStream ticketsReport(List<Bilet> biletList) throws IOException {
+    public static ByteArrayInputStream passengersReport(List<Bilet> biletList) throws IOException {
 
 		Document document = new Document();
 		ByteArrayOutputStream out = new ByteArrayOutputStream();

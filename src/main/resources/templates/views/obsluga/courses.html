@@ -19,7 +19,8 @@
                     <thead class="thead-dark">
                         <tr  class="active">
                             <th>Data kursu</th>  
-                            <th>Relacja</th>  
+                            <th>Relacja</th> 
+                            <th>Pasażerowie</th> 
                         </tr>
 
                     </thead>
@@ -29,6 +30,7 @@
                                      +'-'+ ${#strings.substring(kurs.dataKursu,0,4)}  + ' ' +${#strings.substring(kurs.dataKursu,11,13)}
                                      + ':' +${#strings.substring(kurs.dataKursu,14,16)} ">...</b> </td>
                             <td> <b  th:text="${kurs.pociag.StacjaPoczatkowa} + ' - ' + ${kurs.pociag.StacjaKoncowa}" >...</b> </td>                                       
+                            <td>  <a class="btn btn-primary my-1" th:href="@{'/raport/passengers/' + ${kurs.idKursu}}">Pobierz</a></td>
                         </tr>
                     </tbody>          
                 </table>    
