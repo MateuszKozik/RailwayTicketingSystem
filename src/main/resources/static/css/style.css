@@ -3,3 +3,36 @@ body
  padding-top: 70px;
  padding-bottom: 70px; 
 }
+
+.bg {
+    /* The image used */
+    background-image: url("/img/background.jpg");
+  
+    /* Full height */
+    height: 100%;
+  
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .container{
+    background: rgba(255, 255, 255, 95) !important;
+    padding: 25px !important;
+  }
+
+  .fill { 
+    min-height: 100vh;
+}
+
+.waves-effect {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}

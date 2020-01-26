@@ -6,7 +6,7 @@
         <title>Strona Główna</title>               
     </head>
     <body>       
-        <div layout:fragment="content" class="container mt-2">
+        <div layout:fragment="content" class="container fill mt-2">
             <div th:if="${empty}" class="row">
                 <div class="col-md-6 offset-md-3 text-center">
                     <div class="alert alert-info alert-dismissible fade show" role="alert">
@@ -19,16 +19,12 @@
             </div>
             <div class="row">
                 <div class="col-md-6 text-center">
-                    <div class="jumbotron jumbotron-fluid">
-                        <div class="container">
                             <h1 class="display-4">Wyszukiwarka kursów</h1>
                             <form  class="input-group-lg" th:action="@{/kursy}" method="POST">
                                 <input class="form-control mb-2" type="text" name="stacjaPoczatkowa" placeholder="Stacja początkowa"/> 
                                 <input class="form-control" type="text" name="stacjaKoncowa" placeholder="Stacja końcowa"/> 
                                 <button class="btn btn-info my-2 btn-lg" type="submit" >Wyszukaj</a>
-                            </form>
-                        </div>
-                    </div>
+                            </form>                                      
                 </div>
                 <div class="col-md-6">
                     <h1 class="display-4 text-center">Ostatnio zakupione</h1>

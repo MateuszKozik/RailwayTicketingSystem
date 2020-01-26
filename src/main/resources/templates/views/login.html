@@ -6,7 +6,7 @@
         <title>Logowanie</title>
     </head>
     <body>
-        <div layout:fragment="content" class="container mt-2">
+        <div layout:fragment="content" class="container fill mt-2">
             <div class="row">
                 <div class="col-md-6 offset-md-3 text-center">
                     <div class="alert alert-danger alert-dismissible fade show" th:if="${param.error}" role="alert">
@@ -39,8 +39,8 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-4 offset-md-4 mt-2">  
-                        <button type="submit" class="btn btn-block btn-primary">Zaloguj</button>
+                    <div class="col-md-4 offset-md-4 mt-2 text-center">  
+                        <button type="submit" class="btn btn-primary">Zaloguj</button>
                     </div>
                 </div>
             </form>
