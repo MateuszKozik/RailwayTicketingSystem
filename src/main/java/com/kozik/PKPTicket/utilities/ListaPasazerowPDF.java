@@ -3,6 +3,8 @@ package com.kozik.PKPTicket.utilities;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import com.itextpdf.text.Chunk;
@@ -96,7 +98,16 @@ public class ListaPasazerowPDF{
             document.add(footer1);
             Paragraph footer2 = new Paragraph("Bilety druga klasa : " + secondClass, headFont);
             footer2.setAlignment(Element.ALIGN_RIGHT);           
-            document.add(footer2);
+			document.add(footer2);
+			
+			LocalDateTime now = LocalDateTime.now();
+            DateTimeFormatter patern = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+            String formattedDate = now.format(patern);
+
+            document.add(Chunk.NEWLINE);
+            Paragraph date = new Paragraph("Wygenerowano: " + formattedDate, headFont);
+            date.setAlignment(Element.ALIGN_CENTER);
+            document.add(date);
 			document.close();
 
 		} catch (DocumentException ex) {

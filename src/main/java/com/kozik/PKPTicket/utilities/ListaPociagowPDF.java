@@ -3,6 +3,8 @@ package com.kozik.PKPTicket.utilities;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
@@ -67,13 +69,15 @@ public class ListaPociagowPDF{
 				cell.setHorizontalAlignment(Element.ALIGN_CENTER);
 				table.addCell(cell);
 
-				cell = new PdfPCell(new Phrase(pociag.getCenaPierwszaKlasa() + "zł",headFont));
+                String cenaPierwszaKlasa = String.format("%.2f", pociag.getCenaPierwszaKlasa());
+				cell = new PdfPCell(new Phrase(cenaPierwszaKlasa + "zł",headFont));
 				cell.setPaddingLeft(5);
 				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 				cell.setHorizontalAlignment(Element.ALIGN_CENTER);
                 table.addCell(cell);
                 
-                cell = new PdfPCell(new Phrase(pociag.getCenaDrugaKlasa() + "zł",headFont));
+                String cenaDrugaKlasa = String.format("%.2f", pociag.getCenaDrugaKlasa());
+                cell = new PdfPCell(new Phrase(cenaDrugaKlasa + "zł",headFont));
 				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 				cell.setHorizontalAlignment(Element.ALIGN_CENTER);
 				cell.setPaddingRight(5);
@@ -99,6 +103,15 @@ public class ListaPociagowPDF{
             Paragraph footer = new Paragraph("Suma pociągów: " + pociagList.size(), headFont);
             footer.setAlignment(Element.ALIGN_RIGHT);           
             document.add(footer);
+           
+            LocalDateTime now = LocalDateTime.now();
+            DateTimeFormatter patern = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+            String formattedDate = now.format(patern);
+
+            document.add(Chunk.NEWLINE);
+            Paragraph date = new Paragraph("Wygenerowano: " + formattedDate, headFont);
+            date.setAlignment(Element.ALIGN_CENTER);
+            document.add(date);
 			document.close();
 
 		} catch (DocumentException ex) {

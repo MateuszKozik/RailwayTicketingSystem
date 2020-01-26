@@ -3,6 +3,8 @@ package com.kozik.PKPTicket.utilities;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import com.itextpdf.text.Chunk;
@@ -89,7 +91,16 @@ public class ListaMaszynistowPDF{
             document.add(Chunk.NEWLINE);
             Paragraph footer = new Paragraph("Suma maszynistów: " + pociagList.size(), headFont);
             footer.setAlignment(Element.ALIGN_RIGHT);           
-            document.add(footer);
+			document.add(footer);
+			
+			LocalDateTime now = LocalDateTime.now();
+            DateTimeFormatter patern = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+            String formattedDate = now.format(patern);
+
+            document.add(Chunk.NEWLINE);
+            Paragraph date = new Paragraph("Wygenerowano: " + formattedDate, headFont);
+            date.setAlignment(Element.ALIGN_CENTER);
+            document.add(date);
 			document.close();
 
 		} catch (DocumentException ex) {
